@@ -3627,7 +3627,7 @@ details-disclosure > details {
 .price--large {
   font-weight: 500 !important;
   font-size: 1.4rem !important;
-  color: #222 !important;
+  color: rgba(var(--color-foreground), 0.8) !important;
   letter-spacing: 0.03em !important;
 }
 
@@ -3645,13 +3645,13 @@ variant-selects select {
 
 /* Active State for Variant Pill */
 variant-radios input[type=radio]:checked + label {
-  background-color: #000 !important;
-  color: #fff !important;
-  border-color: #000 !important;
+  background-color: rgb(var(--color-foreground)) !important;
+  color: rgb(var(--color-background)) !important;
+  border-color: rgb(var(--color-foreground)) !important;
 }
 
 variant-radios label.variant__button-label:hover {
-  background-color: #f4f4f4 !important;
+  background-color: rgba(var(--color-foreground), 0.05) !important;
 }
 
 /* Sharp Action Buttons */
@@ -3667,12 +3667,12 @@ variant-radios label.variant__button-label:hover {
 /* Primary "Add to Cart" Button */
 .product-form__submit[name="add"] {
   background-color: transparent !important;
-  color: #000 !important;
-  border: 2px solid #000 !important;
+  color: rgb(var(--color-foreground)) !important;
+  border: 2px solid rgb(var(--color-foreground)) !important;
 }
 .product-form__submit[name="add"]:hover {
-  background-color: #000 !important;
-  color: #fff !important;
+  background-color: rgb(var(--color-foreground)) !important;
+  color: rgb(var(--color-background)) !important;
 }
 
 /* Dynamic "Buy It Now" Button */
@@ -3682,11 +3682,11 @@ variant-radios label.variant__button-label:hover {
   font-weight: 800 !important;
   letter-spacing: 0.1em !important;
   padding: 1.5rem !important;
-  background-color: #000 !important;
-  color: #fff !important;
+  background-color: rgb(var(--color-foreground)) !important;
+  color: rgb(var(--color-background)) !important;
 }
 .shopify-payment-button__button--unbranded:hover {
-  background-color: #333 !important;
+  background-color: rgba(var(--color-foreground), 0.8) !important;
 }
 
 /* Collapsible Tabs (Accordions) Styling */
@@ -3698,7 +3698,7 @@ variant-radios label.variant__button-label:hover {
 .accordion__content p {
   font-size: 1.3rem !important;
   line-height: 1.6 !important;
-  color: #444 !important;
+  color: rgba(var(--color-foreground), 0.75) !important;
 }
 
 /* Hide Tax Text */
@@ -3711,7 +3711,7 @@ variant-radios label.variant__button-label:hover {
   text-transform: uppercase !important;
   font-weight: 700 !important;
   letter-spacing: 0.05em !important;
-  color: #000 !important;
+  color: rgb(var(--color-foreground)) !important;
   margin-bottom: 1rem !important;
 }
 
@@ -3793,12 +3793,12 @@ variant-radios label.variant__button-label:hover {
     transform: translateY(-50%) !important;
     width: 4rem !important;
     height: 4rem !important;
-    background: #fff !important;
-    border: 1px solid #eee !important;
+    background: rgb(var(--color-background)) !important;
+    border: 1px solid rgba(var(--color-foreground), 0.1) !important;
     border-radius: 50% !important;
     align-items: center !important;
     justify-content: center !important;
-    color: #000 !important;
+    color: rgb(var(--color-foreground)) !important;
     cursor: pointer !important;
     pointer-events: auto !important; /* Make buttons clickable */
     box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
@@ -3811,8 +3811,8 @@ variant-radios label.variant__button-label:hover {
     right: 2rem !important;
   }
   .product--stacked .slider-button:hover {
-    background: #000 !important;
-    color: #fff !important;
+    background: rgb(var(--color-foreground)) !important;
+    color: rgb(var(--color-background)) !important;
   }
   /* Show and Style the Dots at the bottom */
   .product--stacked .slider-counter {
