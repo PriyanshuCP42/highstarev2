@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "image_banner": {
@@ -29,33 +38,32 @@
       "settings": {
         "image_overlay_opacity": 40,
         "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
         "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
+        "show_text_box": false,
         "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
         "show_text_below": false
       }
     },
     "featured_collection_anime": {
       "type": "featured-collection",
       "settings": {
+        "collection": "anime",
+        "products_to_show": 6,
         "title": "SS/01",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "anime",
-        "products_to_show": 6,
         "columns_desktop": 3,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
         "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -63,6 +71,7 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 64,
         "padding_bottom": 36
       }
@@ -70,20 +79,19 @@
     "featured_collection_hiphop": {
       "type": "featured-collection",
       "settings": {
+        "collection": "hip-hop",
+        "products_to_show": 6,
         "title": "",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "hip-hop",
-        "products_to_show": 6,
         "columns_desktop": 3,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
         "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -91,6 +99,7 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 64
       }
@@ -143,18 +152,19 @@
         "buy_buttons"
       ],
       "settings": {
+        "product": "guts-tee",
+        "custom_image_asset": "Grill.png",
         "color_scheme": "scheme-4",
         "secondary_background": false,
+        "media_size": "large",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
         "media_position": "left",
         "image_zoom": "hover",
-        "constrain_to_viewport": false,
-        "media_size": "large",
         "hide_variants": false,
         "enable_video_looping": false,
         "padding_top": 80,
-        "padding_bottom": 80,
-        "product": "guts-waffle-tee",
-        "custom_image_asset": "Grill.png"
+        "padding_bottom": 80
       }
     },
     "slideshow_lookbook": {
@@ -166,9 +176,10 @@
             "image_asset": "Lookbook .png",
             "image_overlay_opacity": 0,
             "heading": "",
+            "heading_size": "h1",
             "subheading": "",
             "button_label": "EXPLORE CAMPAIGN",
-            "link": "shopify:\/\/collections\/all",
+            "link": "shopify://collections/all",
             "button_style_secondary": true,
             "show_text_box": false,
             "box_align": "bottom-center",
@@ -183,9 +194,10 @@
             "image_asset": "Lookbook1.png",
             "image_overlay_opacity": 0,
             "heading": "",
+            "heading_size": "h1",
             "subheading": "",
             "button_label": "EXPLORE CAMPAIGN",
-            "link": "shopify:\/\/collections\/all",
+            "link": "shopify://collections/all",
             "button_style_secondary": true,
             "show_text_box": false,
             "box_align": "bottom-center",
