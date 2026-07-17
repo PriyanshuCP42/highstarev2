@@ -3824,3 +3824,11 @@ variant-radios label.variant__button-label:hover {
     pointer-events: auto !important;
   }
 }
+
+/* Push banner text down on mobile to avoid covering the model */
+@media screen and (max-width: 749px) {
+  .banner__content {
+    align-items: flex-end !important;
+    padding-bottom: 12rem !important;
+  }
+}
