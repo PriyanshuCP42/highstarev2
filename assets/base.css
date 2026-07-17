@@ -3610,3 +3610,217 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* --- HIGHSTARE PRODUCT PAGE OVERHAUL --- */
+
+/* Massive Product Title */
+.product__title h1 {
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  font-size: 2.5rem !important;
+  line-height: 1.1 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Minimal Price */
+.price--large {
+  font-weight: 500 !important;
+  font-size: 1.4rem !important;
+  color: #222 !important;
+  letter-spacing: 0.03em !important;
+}
+
+/* Brutalist Variant Pills */
+variant-radios label.variant__button-label,
+variant-selects select {
+  border-radius: 0 !important; /* Sharp corners */
+  border: 1px solid #ccc !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  padding: 1rem 2rem !important;
+  margin-right: 0.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Active State for Variant Pill */
+variant-radios input[type=radio]:checked + label {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+
+variant-radios label.variant__button-label:hover {
+  background-color: #f4f4f4 !important;
+}
+
+/* Sharp Action Buttons */
+.product-form__submit {
+  border-radius: 0 !important;
+  text-transform: uppercase !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+  padding: 1.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Primary "Add to Cart" Button */
+.product-form__submit[name="add"] {
+  background-color: transparent !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+}
+.product-form__submit[name="add"]:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Dynamic "Buy It Now" Button */
+.shopify-payment-button__button--unbranded {
+  border-radius: 0 !important;
+  text-transform: uppercase !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+  padding: 1.5rem !important;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.shopify-payment-button__button--unbranded:hover {
+  background-color: #333 !important;
+}
+
+/* Collapsible Tabs (Accordions) Styling */
+.accordion__title {
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+}
+.accordion__content p {
+  font-size: 1.3rem !important;
+  line-height: 1.6 !important;
+  color: #444 !important;
+}
+
+/* Hide Tax Text */
+.product__tax {
+  display: none !important;
+}
+
+/* Variant Pill Labels (e.g., "Size") */
+.form__label {
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #000 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Fix product image framing and alignment */
+.product__media img,
+.product__media-item img {
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: none !important;
+}
+
+/* Zoom in slightly on mobile and reduce gallery height so the title is visible */
+@media screen and (max-width: 749px) {
+  .product__media img,
+  .product__media-item img {
+    transform: scale(1.15) !important;
+  }
+  .product__media-list,
+  .product__media-item,
+  .product-media-container {
+    max-height: 60vh !important;
+  }
+}
+
+/* Hide default thumbnails entirely */
+.thumbnail-slider,
+.thumbnail-list {
+  display: none !important;
+}
+
+/* Force main gallery into a horizontal swipe/scroll container */
+@media screen and (min-width: 750px) {
+  .product--stacked .product__media-list {
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    flex-wrap: nowrap !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 0 !important;
+    scrollbar-width: none; /* Hide scrollbar for cleaner look */
+  }
+  .product--stacked .product__media-list::-webkit-scrollbar {
+    display: none;
+  }
+  .product--stacked .product__media-item {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-align: start !important;
+  }
+  .product__info-wrapper {
+    padding-left: 5rem !important; /* give the sticky info some breathing room from the massive image */
+  }
+
+  .product__info-wrapper {
+    padding-left: 5rem !important; /* give the sticky info some breathing room from the massive image */
+  }
+
+  /* Reveal and Style Native Slider Buttons on Desktop */
+  .product--stacked slider-component {
+    position: relative;
+  }
+  .product--stacked .slider-buttons {
+    display: flex !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10 !important;
+    pointer-events: none !important; /* Let clicks pass through the container */
+  }
+  .product--stacked .slider-button {
+    display: flex !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 4rem !important;
+    height: 4rem !important;
+    background: #fff !important;
+    border: 1px solid #eee !important;
+    border-radius: 50% !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #000 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important; /* Make buttons clickable */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease !important;
+  }
+  .product--stacked .slider-button--prev {
+    left: 2rem !important;
+  }
+  .product--stacked .slider-button--next {
+    right: 2rem !important;
+  }
+  .product--stacked .slider-button:hover {
+    background: #000 !important;
+    color: #fff !important;
+  }
+  /* Show and Style the Dots at the bottom */
+  .product--stacked .slider-counter {
+    display: flex !important;
+    position: absolute !important;
+    bottom: 2rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    pointer-events: auto !important;
+  }
+}

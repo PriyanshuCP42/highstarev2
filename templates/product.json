@@ -1,1 +1,139 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"text","settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"description":{"type":"description","settings":{}},"share":{"type":"share","settings":{"share_label":"Share"}}},"block_order":["vendor","title","price","variant_picker","quantity_selector","buy_buttons","description","share"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"large","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"stacked","mobile_thumbnails":"hide","media_position":"left","image_zoom":"lightbox","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"disclosures":{"type":"disclosures","settings":{"padding_top":36,"padding_bottom":0}},"related-products":{"type":"related-products","settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"padding_top":36,"padding_bottom":28}}},"order":["main","disclosures","related-products"]}
+{
+    "sections": {
+        "main": {
+            "type": "main-product",
+            "blocks": {
+                "vendor": {
+                    "type": "text",
+                    "settings": {
+                        "text": "{{ product.vendor }}",
+                        "text_style": "uppercase"
+                    }
+                },
+                "title": {
+                    "type": "title",
+                    "settings": {}
+                },
+                "price": {
+                    "type": "price",
+                    "settings": {}
+                },
+                "variant_picker": {
+                    "type": "variant_picker",
+                    "settings": {
+                        "picker_type": "button",
+                        "swatch_shape": "square"
+                    }
+                },
+                "quantity_selector": {
+                    "type": "quantity_selector",
+                    "settings": {}
+                },
+                "buy_buttons": {
+                    "type": "buy_buttons",
+                    "settings": {
+                        "show_dynamic_checkout": true,
+                        "show_gift_card_recipient": true
+                    }
+                },
+                "description": {
+                    "type": "description",
+                    "settings": {}
+                },
+                "share": {
+                    "type": "share",
+                    "settings": {
+                        "share_label": "Share"
+                    }
+                },
+                "tab_why_love": {
+                    "type": "collapsible_tab",
+                    "settings": {
+                        "heading": "Why You'll Love It",
+                        "icon": "heart",
+                        "content": "<p>\u2714 Premium <strong>240 GSM Heavyweight Cotton</strong></p><p>\u2714 Relaxed <strong>Oversized Streetwear Fit</strong></p><p>\u2714 High-Definition Front & Back Graphic Print</p><p>\u2714 Soft, Breathable & Comfortable for All-Day Wear</p>"
+                    }
+                },
+                "tab_details": {
+                    "type": "collapsible_tab",
+                    "settings": {
+                        "heading": "Product Details",
+                        "icon": "shirt",
+                        "content": "<p>\u2714 Durable, Fade-Resistant Premium Print</p><p>\u2714 Built for Everyday Streetwear</p><p>\u2714 Unisex Design</p><p>\u2714 Made in India</p>"
+                    }
+                },
+                "tab_care": {
+                    "type": "collapsible_tab",
+                    "settings": {
+                        "heading": "Care Instructions",
+                        "icon": "washing",
+                        "content": "<p>Machine wash cold, inside out. Hang dry. Do not iron directly on graphic.</p>"
+                    }
+                },
+                "trust_badges": {
+                    "type": "custom_liquid",
+                    "settings": {
+                        "custom_liquid": "\n<div class=\"custom-trust-badges\">\n  <div class=\"trust-title\">\n    <span class=\"trust-icon\">\ud83d\udd12</span> GUARANTEED SECURE CHECKOUT\n  </div>\n  <div class=\"trust-payment-icons\">\n    <img src=\"https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg\" alt=\"PhonePe\" style=\"height:24px; width:auto; border-radius:3px;\">\n    <img src=\"https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg\" alt=\"Paytm\" style=\"height:24px; width:auto; border-radius:3px;\">\n    {{ 'visa' | payment_type_svg_tag: class: 'icon icon--full-color' }}\n    {{ 'master' | payment_type_svg_tag: class: 'icon icon--full-color' }}\n    <div style=\"display:flex; align-items:center; background:#fff; border:1px solid #e2e2e2; border-radius:3px; padding:0 6px; height:24px; font-size:10px; font-weight:700; color:#333;\">\ud83d\udcb3 DEBIT CARDS</div>\n  </div>\n\n  <div class=\"delivery-journey\">\n    <div class=\"journey-step\">\n      <div class=\"step-icon\">\ud83d\udce6</div>\n      <div class=\"step-text\">Order<br>Placed</div>\n    </div>\n    <div class=\"journey-line\"></div>\n    <div class=\"journey-step\">\n      <div class=\"step-icon\">\ud83d\ude9a</div>\n      <div class=\"step-text\">Dispatched<br>in 24 Hrs</div>\n    </div>\n    <div class=\"journey-line\"></div>\n    <div class=\"journey-step\">\n      <div class=\"step-icon\">\ud83c\udfe0</div>\n      <div class=\"step-text\">Delivered<br>in 6-7 Days</div>\n    </div>\n  </div>\n</div>\n\n<style>\n  .custom-trust-badges {\n    margin-top: 0.5rem;\n    padding: 1.5rem 1.2rem;\n    background: #fafafa;\n    border: 1px solid #eaeaea;\n    border-radius: 0.4rem;\n    text-align: center;\n    margin-bottom: 2rem;\n  }\n  .custom-trust-badges .trust-title {\n    font-size: 1.1rem;\n    font-weight: 800;\n    letter-spacing: 0.05em;\n    color: #111;\n    margin-bottom: 1.2rem;\n    text-transform: uppercase;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 0.5rem;\n  }\n  .custom-trust-badges .trust-payment-icons {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 0.6rem;\n    margin-bottom: 2rem;\n  }\n  .custom-trust-badges .trust-payment-icons svg {\n    width: auto;\n    height: 24px;\n  }\n  \n  .delivery-journey {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    max-width: 320px;\n    margin: 0 auto;\n    padding-top: 1rem;\n    border-top: 1px dashed #ddd;\n  }\n  .journey-step {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 0.4rem;\n    position: relative;\n    z-index: 2;\n  }\n  .step-icon {\n    font-size: 1.6rem;\n    background: #fff;\n    width: 3.5rem;\n    height: 3.5rem;\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border: 2px solid #111;\n    box-shadow: 0 4px 6px rgba(0,0,0,0.05);\n  }\n  .step-text {\n    font-size: 0.85rem;\n    font-weight: 700;\n    color: #444;\n    line-height: 1.2;\n    text-transform: uppercase;\n  }\n  .journey-line {\n    flex-grow: 1;\n    height: 2px;\n    background: #111;\n    margin: 0 -1rem;\n    margin-top: -2rem; /* offset to align with circle center */\n    z-index: 1;\n  }\n</style>\n"
+                    }
+                }
+            },
+            "block_order": [
+                "title",
+                "price",
+                "variant_picker",
+                "quantity_selector",
+                "buy_buttons",
+                "trust_badges",
+                "tab_why_love",
+                "tab_details",
+                "tab_care",
+                "share"
+            ],
+            "settings": {
+                "enable_sticky_info": true,
+                "color_scheme": "scheme-1",
+                "media_size": "large",
+                "constrain_to_viewport": false,
+                "media_fit": "contain",
+                "gallery_layout": "stacked",
+                "mobile_thumbnails": "hide",
+                "media_position": "left",
+                "image_zoom": "none",
+                "hide_variants": true,
+                "enable_video_looping": false,
+                "padding_top": 36,
+                "padding_bottom": 12
+            }
+        },
+        "disclosures": {
+            "type": "disclosures",
+            "settings": {
+                "padding_top": 36,
+                "padding_bottom": 0
+            }
+        },
+        "related-products": {
+            "type": "related-products",
+            "settings": {
+                "heading": "You may also like",
+                "heading_size": "h2",
+                "products_to_show": 4,
+                "columns_desktop": 4,
+                "columns_mobile": "2",
+                "color_scheme": "scheme-1",
+                "image_ratio": "square",
+                "image_shape": "default",
+                "show_secondary_image": true,
+                "show_vendor": false,
+                "show_rating": false,
+                "padding_top": 36,
+                "padding_bottom": 28
+            }
+        }
+    },
+    "order": [
+        "main",
+        "disclosures",
+        "related-products"
+    ]
+}

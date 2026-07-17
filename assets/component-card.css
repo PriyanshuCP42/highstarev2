@@ -593,3 +593,54 @@
     clip-path: polygon(var(--shape--blob-5));
   }
 }
+
+/* --- HIGHSTARE PREMIUM EDITORIAL CARD --- */
+
+/* Remove default underline on links */
+.card-wrapper .card-information .card__heading a:hover,
+.card-wrapper .card-information .card__heading a:focus,
+.underline-links-hover:hover a,
+.card-information a:hover {
+  text-decoration: none !important;
+}
+.card-wrapper .card-information .card__heading a {
+  text-decoration: none !important;
+}
+
+/* Premium Typography for Title */
+.card-wrapper .card-information .card__heading {
+  text-transform: uppercase;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em;
+  font-size: 16px !important;
+  margin-bottom: 0.8rem;
+  transition: opacity 0.3s ease;
+}
+
+/* Dim text slightly on hover for a sophisticated feel */
+.card-wrapper:hover .card__heading {
+  opacity: 0.5;
+}
+
+/* Premium Typography for Price */
+.card-wrapper .card-information .price {
+  font-weight: 500 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.03em;
+  color: #111 !important;
+}
+
+/* Tighten spacing between image and text */
+.card-information {
+  padding-top: 1rem !important;
+}
+
+/* Smooth Image Scale on Hover */
+.card-wrapper .media img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+.card-wrapper:hover .media img {
+  transform: scale(1.05) !important;
+}
+
+
