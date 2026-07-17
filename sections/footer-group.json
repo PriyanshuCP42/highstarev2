@@ -1,0 +1,52 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "text_about": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "menu_shop": {
+          "type": "link_list",
+          "settings": {
+            "heading": "COLLECTIONS",
+            "menu": "main-menu"
+          }
+        },
+        "menu_support": {
+          "type": "link_list",
+          "settings": {
+            "heading": "SUPPORT",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "text_about",
+        "menu_shop",
+        "menu_support"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "newsletter_enable": false,
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 80,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

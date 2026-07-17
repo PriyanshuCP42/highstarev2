@@ -1,0 +1,255 @@
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Browse our latest products",
+            "heading_size": "h0"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "button"
+      ],
+      "settings": {
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "image_behavior": "none",
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "featured_collection_anime": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "SS/01",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "anime",
+        "products_to_show": 6,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 64,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_hiphop": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "hip-hop",
+        "products_to_show": 6,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 64
+      }
+    },
+    "featured_product_grail": {
+      "type": "featured-product",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "CHAPTER 01: THE ARCHIVES",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h0"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "none"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        }
+      },
+      "block_order": [
+        "text",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "secondary_background": false,
+        "media_position": "left",
+        "image_zoom": "hover",
+        "constrain_to_viewport": false,
+        "media_size": "large",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "product": "guts-waffle-tee",
+        "custom_image_asset": "Grill.png"
+      }
+    },
+    "slideshow_lookbook": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image_asset": "Lookbook .png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "subheading": "",
+            "button_label": "EXPLORE CAMPAIGN",
+            "link": "shopify:\/\/collections\/all",
+            "button_style_secondary": true,
+            "show_text_box": false,
+            "box_align": "bottom-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "image_asset": "Lookbook1.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "subheading": "",
+            "button_label": "EXPLORE CAMPAIGN",
+            "link": "shopify:\/\/collections\/all",
+            "button_style_secondary": true,
+            "show_text_box": false,
+            "box_align": "bottom-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-4"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "fullscreen",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Lookbook Slideshow"
+      }
+    },
+    "newsletter_drop": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "EARLY ACCESS. LIMITED DROPS.",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Join the cult.</p>"
+          }
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email_form"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "featured_collection_anime",
+    "featured_collection_hiphop",
+    "featured_product_grail",
+    "slideshow_lookbook",
+    "newsletter_drop"
+  ]
+}
