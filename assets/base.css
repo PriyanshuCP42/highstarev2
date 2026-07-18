@@ -3832,3 +3832,11 @@ variant-radios label.variant__button-label:hover {
     padding-bottom: 12rem !important;
   }
 }
+
+/* Increase product title size and weight on cards */
+.card-information .card__heading,
+.card-information .card__heading a {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+}
