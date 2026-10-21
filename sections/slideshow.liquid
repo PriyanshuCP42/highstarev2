@@ -2,13 +2,26 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
 {%- if section.settings.slide_height == 'adapt_image' -%}
   {%- style -%}
     @media screen and (max-width: 749px) {
       #Slider-{{ section.id }}::before,
       #Slider-{{ section.id }} .media::before,
       #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {% if section.blocks.first.settings.image != blank %}{{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%{% elsif section.blocks.first.settings.image_asset != blank %}66.6667%{% else %}100%{% endif %};
+        padding-bottom: {% if section.blocks.first.settings.image != blank %}{{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%{% elsif section.blocks.first.settings.image_asset != blank %}0%{% else %}100%{% endif %};
         content: '';
         display: block;
       }
@@ -17,7 +30,7 @@
     @media screen and (min-width: 750px) {
       #Slider-{{ section.id }}::before,
       #Slider-{{ section.id }} .media::before {
-        padding-bottom: {% if section.blocks.first.settings.image != blank %}{{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%{% elsif section.blocks.first.settings.image_asset != blank %}66.6667%{% else %}100%{% endif %};
+        padding-bottom: {% if section.blocks.first.settings.image != blank %}{{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%{% elsif section.blocks.first.settings.image_asset != blank %}0%{% else %}100%{% endif %};
         content: '';
         display: block;
       }
@@ -25,26 +38,61 @@
   {%- endstyle -%}
 {%- elsif section.settings.slide_height == 'fullscreen' -%}
   {%- style -%}
-    #Slider-{{ section.id }},
-    #Slider-{{ section.id }} .slideshow__media {
-      height: 100vh !important;
-      min-height: 100vh !important;
+    @media screen and (min-width: 750px) {
+      #Slider-{{ section.id }},
+      #Slider-{{ section.id }} .slideshow__media {
+        height: 100vh !important;
+        min-height: 100vh !important;
+      }
     }
     #Slider-{{ section.id }}::before,
     #Slider-{{ section.id }} .media::before {
       display: none !important;
     }
+    @media screen and (max-width: 749px) {
+      #Slider-{{ section.id }},
+      #Slider-{{ section.id }} .slideshow__slide,
+      #Slider-{{ section.id }} .slideshow__media {
+        background-color: #080202 !important;
+      }
+      #Slider-{{ section.id }} .slideshow__slide {
+        aspect-ratio: 1448 / 1086 !important;
+        height: auto !important;
+        min-height: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      #Slider-{{ section.id }} .slideshow__media {
+        height: 100% !important;
+        width: 100% !important;
+        min-height: 0 !important;
+        position: relative !important;
+      }
+      #Slider-{{ section.id }} .slideshow__media picture,
+      #Slider-{{ section.id }} .slideshow__media img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+      }
+      #Slider-{{ section.id }} .slideshow__content,
+      #Slider-{{ section.id }} .slideshow__text-wrapper {
+        display: none !important;
+        min-height: 0 !important;
+        height: 0 !important;
+      }
+    }
   {%- endstyle -%}
 {%- endif -%}
 
 <slideshow-component
-  class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
+  class="slider-mobile-gutter section-{{ section.id }}-padding{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
   role="region"
   aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
   aria-label="{{ section.settings.accessibility_info | escape }}"
 >
   {%- if section.settings.auto_rotate and section.blocks.size > 1 -%}
-    <div class="slideshow__controls slideshow__controls--top slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}">
+    <div class="slideshow__controls slideshow__controls--top slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}{% unless section.settings.show_controls %} hidden{% endunless %}"{% unless section.settings.show_controls %} style="display: none !important;"{% endunless %}>
       <button
         type="button"
         class="slider-button slider-button--prev"
@@ -132,9 +180,17 @@
         aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
         tabindex="-1"
       >
-        <div class="slideshow__media banner__media media{% if block.settings.image == blank and block.settings.image_asset == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+        <div class="slideshow__media banner__media media{% if block.settings.image == blank and block.settings.image_asset == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}" {% if block.settings.image_asset != blank %}style="position: relative !important; height: auto !important;"{% endif %}>
           {%- if block.settings.image_asset != blank -%}
-            <img src="{{ block.settings.image_asset | asset_url }}" width="1600" height="900" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;" loading="lazy">
+            {%- if block.settings.mobile_image_asset != blank -%}
+              <picture style="display: block; width: 100%; position: relative !important; height: auto !important;">
+                <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image_asset | asset_url }}">
+                <source media="(min-width: 750px)" srcset="{{ block.settings.image_asset | asset_url }}">
+                <img src="{{ block.settings.image_asset | asset_url }}" width="100%" height="100%" style="width: 100%; height: auto !important; position: relative !important; object-fit: contain;" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}">
+              </picture>
+            {%- else -%}
+              <img src="{{ block.settings.image_asset | asset_url }}" width="100%" height="100%" style="width: 100%; height: auto !important; position: relative !important; object-fit: contain;" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}">
+            {%- endif -%}
           {%- elsif block.settings.image -%}
             {%- liquid
               assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
@@ -205,7 +261,7 @@
   </div>
 
   {%- if section.blocks.size > 1 and section.settings.auto_rotate == false -%}
-    <div class="slideshow__controls slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}">
+    <div class="slideshow__controls slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}{% unless section.settings.show_controls %} hidden{% endunless %}"{% unless section.settings.show_controls %} style="display: none !important;"{% endunless %}>
       <button
         type="button"
         class="slider-button slider-button--prev"
@@ -355,6 +411,12 @@
       "default": false
     },
     {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Show slideshow controls",
+      "default": false
+    },
+    {
       "type": "range",
       "id": "change_slides_speed",
       "min": 3,
@@ -392,14 +454,27 @@
     },
     {
       "type": "header",
-      "content": "t:sections.slideshow.settings.accessibility.content"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
-      "type": "text",
-      "id": "accessibility_info",
-      "label": "t:sections.slideshow.settings.accessibility.label",
-      "info": "t:sections.slideshow.settings.accessibility.info",
-      "default": "t:sections.slideshow.settings.accessibility.default"
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
     }
   ],
   "blocks": [
@@ -416,7 +491,12 @@
         {
           "type": "text",
           "id": "image_asset",
-          "label": "Custom Asset Image"
+          "label": "Custom Image Asset Name (e.g. HERO.png)"
+        },
+        {
+          "type": "text",
+          "id": "mobile_image_asset",
+          "label": "Custom Mobile Image Asset Name (Optional)"
         },
         {
           "type": "range",

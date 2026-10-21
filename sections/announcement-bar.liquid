@@ -1,85 +1,105 @@
 <style>
-  .y2k-marquee-container {
+  .announcement-marquee {
     width: 100%;
     overflow: hidden;
     background: #000;
     color: #fff;
-    padding: 12px 0;
+    padding: 10px 0;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #222;
+    position: relative;
   }
-  .y2k-marquee {
+
+  .announcement-track {
     display: flex;
     white-space: nowrap;
-    animation: y2k-scroll 40s linear infinite;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-size: 1.3rem;
+    animation: announcement-scroll 50s linear infinite;
+    will-change: transform;
   }
-  .y2k-marquee-item {
+
+  .announcement-track:hover {
+    animation-play-state: paused;
+  }
+
+  .announcement-item {
     display: flex;
     align-items: center;
-    padding: 0;
+    gap: 0;
+    flex-shrink: 0;
   }
-  .y2k-symbol {
-    font-size: 1.4rem;
-    margin: 0 3rem;
-    animation: color-pulse 3s infinite;
+
+  .announcement-text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
   }
-  @keyframes y2k-scroll {
+
+  .announcement-text:hover {
+    color: #fff;
+  }
+
+  .announcement-separator {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    margin: 0 2.5rem;
+    flex-shrink: 0;
+  }
+
+  @keyframes announcement-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
-  @keyframes color-pulse {
-    0% { color: #ff00ff; } /* Neon Pink */
-    33% { color: #00ffff; } /* Cyan */
-    66% { color: #39ff14; } /* Neon Green */
-    100% { color: #ff00ff; }
+
+  /* Subtle edge fade for premium feel */
+  .announcement-marquee::before,
+  .announcement-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    z-index: 2;
+    pointer-events: none;
   }
-  .y2k-highlight {
-    color: #39ff14;
-    text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+  .announcement-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, #000, transparent);
   }
-  .interactive-badge {
-    display: inline-block;
-    background: linear-gradient(45deg, #ff00ff, #00ffff);
-    color: #000;
-    padding: 2px 12px;
-    border-radius: 20px;
-    font-weight: 900;
-    text-transform: uppercase;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    margin: 0 5px;
+  .announcement-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, #000, transparent);
   }
-  .interactive-badge:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
-  }
-  .trust-badge {
-    display: inline-flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 2px 12px;
-    border-radius: 4px;
-    gap: 6px;
-    transition: background 0.3s ease, border-color 0.3s ease;
-  }
-  .trust-badge:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: #39ff14;
+
+  @media (max-width: 749px) {
+    .announcement-text {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+    .announcement-separator {
+      margin: 0 1.5rem;
+    }
   }
 </style>
 
-<div class="y2k-marquee-container">
-  <div class="y2k-marquee">
-    {%- for i in (1..10) -%}
-      <div class="y2k-marquee-item">
-        HASSLE-FREE RETURNS 🔄 <span class="y2k-symbol">✦</span> 🚨 NO RESTOCKS 🚨 <span class="y2k-symbol">✚</span> <span class="y2k-highlight">💳 10% OFF ON ALL PREPAID ORDERS 💸</span> <span class="y2k-symbol">✦</span> 🚚 FREE SHIPPING <span class="y2k-symbol">✚</span> <span class="trust-badge">✅ 10000+ HAPPY CUSTOMERS ⭐</span> <span class="y2k-symbol">✦</span> <span class="interactive-badge">SECURE YOUR DROP 🔒</span> <span class="y2k-symbol">✚</span>
+<div class="announcement-marquee">
+  <div class="announcement-track">
+    {%- for i in (1..8) -%}
+      <div class="announcement-item">
+        <span class="announcement-text">Free Shipping on All Orders</span>
+        <span class="announcement-separator"></span>
+        <span class="announcement-text">10% Off on Prepaid Orders</span>
+        <span class="announcement-separator"></span>
+        <span class="announcement-text">Limited Edition — No Restocks</span>
+        <span class="announcement-separator"></span>
+
+        <span class="announcement-text">Secure Checkout</span>
+        <span class="announcement-separator"></span>
       </div>
     {%- endfor -%}
   </div>

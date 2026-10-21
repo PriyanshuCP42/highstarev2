@@ -122,9 +122,9 @@
                           }}
                         </div>
                       {%- endif -%}
-                      {%- if settings.brand_headline != blank -%}
-                        <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
-                      {%- endif -%}
+                      <div class="footer-block__image-wrapper" style="max-width: min(100%, {{ settings.logo_width }}px); margin-bottom: 2rem;">
+                        <img src="{{ 'Asset 33.png' | asset_url }}" alt="{{ shop.name | escape }}" class="footer-block__image" style="max-width: 100%; height: auto;">
+                      </div>
                       {%- if settings.brand_description != blank -%}
                         <div class="rte">{{ settings.brand_description }}</div>
                       {%- endif -%}

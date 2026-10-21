@@ -31,6 +31,12 @@
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
 
+    @media screen and (max-width: 989px) {
+      .section-{{ section.id }}-padding {
+        padding-top: 4px !important;
+      }
+    }
+
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
@@ -73,13 +79,152 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
+  
+  <style>
+    /* Global Cream Background for Product Info */
+    #MainProduct-{{ section.id }} .product__info-wrapper {
+      background-color: #faf8f5;
+    }
+
+    @media screen and (min-width: 990px) {
+      /* Minimal left space */
+      #MainProduct-{{ section.id }} .page-width {
+        max-width: 100% !important;
+        padding-left: 0.5rem !important;
+        padding-right: 2rem !important;
+      }
+      
+      /* Force space below navbar directly on the wrappers */
+      #MainProduct-{{ section.id }} .product__media-wrapper {
+        margin-top: 8px !important;
+      }
+
+      /* Ensure product info has spacing and aligns with the image top */
+      #MainProduct-{{ section.id }} .product__info-wrapper {
+        margin-top: 8px !important;
+        padding: 2.5rem 2rem !important;
+        border-radius: 12px;
+        max-width: 600px;
+        margin-left: 0;
+        margin-right: auto;
+      }
+    }
+
+    @media screen and (max-width: 989px) {
+      /* Edge-to-edge layout on mobile */
+      #MainProduct-{{ section.id }} .page-width {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      [id^="MainProduct-"],
+      .section-{{ section.id }}-padding {
+        padding-top: 0px !important;
+      }
+      
+      /* Normal flex column flow on mobile */
+      #MainProduct-{{ section.id }} .product {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      /* Product image wrapper stays in normal flow - NEVER sticky or moving */
+      #MainProduct-{{ section.id }} .product__media-wrapper {
+        position: relative !important;
+        top: auto !important;
+        z-index: 1;
+        width: 100% !important;
+        height: auto !important; 
+        margin-bottom: 0 !important;
+      }
+
+      /* Horizontal swipe slider for image navigation */
+      #MainProduct-{{ section.id }} .product__media-list {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 0 !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-x !important;
+        scrollbar-width: none !important;
+      }
+
+      /* Hide scrollbar on webkit */
+      #MainProduct-{{ section.id }} .product__media-list::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      /* Each image: full-width snap point */
+      #MainProduct-{{ section.id }} .product__media-item {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        scroll-snap-align: start !important;
+        scroll-snap-stop: always !important;
+        touch-action: pan-x !important;
+      }
+
+      /* slider-component wrapper: zero margins */
+      #MainProduct-{{ section.id }} slider-component {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      /* Fixed height image container - eliminates white space from aspect-ratio padding */
+      #MainProduct-{{ section.id }} .product-media-container {
+        height: 460px !important;
+        max-height: 460px !important;
+        overflow: hidden !important;
+      }
+
+      /* Kill the padding-top aspect ratio trick on .media div */
+      #MainProduct-{{ section.id }} .product-media-container .media {
+        padding-top: 0 !important;
+        height: 460px !important;
+        position: relative !important;
+      }
+
+      /* Images: cover-fit to fill container, no transforms */
+      #MainProduct-{{ section.id }} .product__media img,
+      #MainProduct-{{ section.id }} .product__media-item img {
+        object-fit: cover !important;
+        object-position: center 35% !important;
+        width: 100% !important;
+        height: 100% !important;
+        transform: none !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+      }
+      
+      /* Premium overlapping info card */
+      #MainProduct-{{ section.id }} .product__info-wrapper {
+        position: relative;
+        z-index: 2;
+        padding: 1.8rem 1.5rem 2.5rem !important;
+        border-radius: 24px 24px 0 0;
+        margin-top: -24px !important;
+        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 100%;
+        background-color: #faf8f5;
+      }
+    }
+  </style>
+
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
     <div class="page-width">
       <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {% render 'product-media-gallery', variant_images: variant_images %}
         </div>
-        <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}">
           <section
             id="ProductInfo-{{ section.id }}"
             class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"

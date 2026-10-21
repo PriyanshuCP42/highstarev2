@@ -1,0 +1,41 @@
+{{ 'premium-marquee.css' | asset_url | stylesheet_tag }}
+
+<div class="premium-marquee">
+  <div class="premium-marquee__track" style="animation-duration: {{ section.settings.speed | times: 2 }}s;">
+    {%- for i in (1..20) -%}
+      <div class="premium-marquee__item">
+        <span class="premium-marquee__text">
+          <span class="premium-marquee__sticker">SOUL</span> ANIME ENERGY 
+          <span class="premium-marquee__sticker">GRIT</span> FOOTBALL CULTURE 
+          <span class="premium-marquee__sticker">LEGACY</span> EXCLUSIVE DROPS 
+          <span class="premium-marquee__sticker">CHAOS</span> WEAR YOUR OBSESSION 
+          <span class="premium-marquee__sticker">VISION</span> SEE DIFFERENT 
+          <span class="premium-marquee__sticker">®</span> <strong>HIGHSTARE</strong> 
+        </span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Premium Marquee",
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "s",
+      "label": "Animation Speed",
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Marquee"
+    }
+  ]
+}
+{% endschema %}

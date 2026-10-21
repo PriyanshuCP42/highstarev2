@@ -1,0 +1,372 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | default: 52 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | default: 52 }}px;
+  }
+
+  .hs-blood-gallery-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #ffffff;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .hs-blood-header {
+    max-width: 950px;
+    margin: 0 auto 36px;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+
+  /* Streetwear Blood Red Top Tag */
+  .hs-blood-tag-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding: 6px 18px 6px 14px;
+    background: linear-gradient(90deg, rgba(193, 18, 31, 0.08) 0%, rgba(193, 18, 31, 0.02) 100%);
+    border: 1px solid rgba(193, 18, 31, 0.15);
+    border-radius: 100px;
+    box-shadow: 0 4px 12px rgba(193, 18, 31, 0.06);
+    backdrop-filter: blur(4px);
+  }
+
+  .hs-blood-pulse {
+    width: 6px;
+    height: 6px;
+    background: #c1121f;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #c1121f;
+    animation: hsBloodPulse 1.6s infinite;
+  }
+
+  @keyframes hsBloodPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+  }
+
+  .hs-blood-tag-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    color: #c1121f;
+    text-transform: uppercase;
+  }
+
+  /* Monumental Two-Tone Headline */
+  .hs-blood-title {
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 900;
+    color: #000000;
+    margin: 0 0 16px 0;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  .hs-blood-highlight {
+    color: #c1121f;
+    display: inline;
+    position: relative;
+  }
+
+  /* Goosebumps Manifesto Subtext */
+  .hs-blood-manifesto {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: #374151;
+    margin: 0 auto 24px;
+    line-height: 1.55;
+    max-width: 720px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+  }
+
+  /* Streetwear Blood Red CTA Button */
+  .hs-blood-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 26px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid #000000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(193, 18, 31, 0.15);
+  }
+
+  .hs-blood-cta:hover {
+    background: #c1121f;
+    border-color: #c1121f;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(193, 18, 31, 0.35);
+  }
+
+  .hs-blood-cta svg {
+    width: 15px;
+    height: 15px;
+    transition: transform 0.2s ease;
+  }
+
+  .hs-blood-cta:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  /* Marquee Track */
+  .hs-blood-marquee-box {
+    width: 100%;
+    overflow: hidden;
+    user-select: none;
+    position: relative;
+    padding: 6px 0 16px;
+  }
+
+  .hs-blood-marquee-box:hover .hs-blood-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .hs-blood-marquee-track {
+    display: flex;
+    gap: 3px;
+    width: max-content;
+    animation: hsBloodGlide 22s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  @keyframes hsBloodGlide {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  /* Sharp Rectangular Frames */
+  .hs-blood-card {
+    position: relative;
+    width: clamp(380px, 45vw, 600px);
+    aspect-ratio: 819 / 1024;
+    flex-shrink: 0;
+    border-radius: 0px !important;
+    overflow: hidden;
+    background: #0a0a0a;
+    text-decoration: none;
+    display: block;
+    border: none;
+  }
+
+  .hs-blood-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 0px !important;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+
+  .hs-blood-card:hover .hs-blood-img {
+    transform: scale(1.03);
+    opacity: 0.94;
+  }
+
+  @media screen and (max-width: 749px) {
+    .hs-blood-card {
+      width: 82vw;
+      max-width: 360px;
+    }
+    .hs-blood-marquee-track {
+      gap: 2px;
+      animation-duration: 14s;
+    }
+    .hs-blood-title {
+      font-size: 1.85rem;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign is_doomsday = false
+  if collection
+    assign col_handle = collection.handle | downcase
+    assign col_title = collection.title | downcase
+    if col_handle contains 'doomsday'
+      assign is_doomsday = true
+    elsif col_title contains 'doomsday'
+      assign is_doomsday = true
+    endif
+  endif
+  if product
+    for col in product.collections
+      assign c_handle = col.handle | downcase
+      assign c_title = col.title | downcase
+      if c_handle contains 'doomsday'
+        assign is_doomsday = true
+        break
+      elsif c_title contains 'doomsday'
+        assign is_doomsday = true
+        break
+      elsif c_handle contains 'doom'
+        assign is_doomsday = true
+        break
+      elsif c_title contains 'doom'
+        assign is_doomsday = true
+        break
+      endif
+    endfor
+    for tag in product.tags
+      assign tag_lower = tag | downcase
+      if tag_lower contains 'doomsday'
+        assign is_doomsday = true
+        break
+      elsif tag_lower contains 'doom'
+        assign is_doomsday = true
+        break
+      endif
+    endfor
+    assign prod_handle = product.handle | downcase
+    assign prod_title = product.title | downcase
+    if prod_handle contains 'doomsday'
+      assign is_doomsday = true
+    elsif prod_title contains 'doomsday'
+      assign is_doomsday = true
+    elsif prod_handle contains 'doom'
+      assign is_doomsday = true
+    elsif prod_title contains 'doom'
+      assign is_doomsday = true
+    endif
+  endif
+-%}
+
+<div class="hs-blood-gallery-wrapper section-{{ section.id }}-padding">
+  <div class="hs-blood-header">
+    <div class="hs-blood-tag-wrap">
+      <span class="hs-blood-pulse"></span>
+      {%- if is_doomsday -%}
+        <span class="hs-blood-tag-text">// DOOMSDAY ARCHIVE • MOVEMENT</span>
+      {%- else -%}
+        <span class="hs-blood-tag-text">// HIGHSTARE ARCHIVE • MOVEMENT</span>
+      {%- endif -%}
+    </div>
+
+    <h2 class="hs-blood-title">
+      WE DIDN'T COME TO PLAY.<br>
+      <span class="hs-blood-highlight">WE CAME TO CHANGE THE GAME.</span>
+    </h2>
+
+    <p class="hs-blood-manifesto">
+      {%- if is_doomsday -%}
+        The Doom has arrived. Engineered for the rebels, the outcasts, and those who rule their own fate.
+      {%- else -%}
+        Engineered for the rebels, the visionaries, and those who refuse to blend in. Feel the presence. Own the fit.
+      {%- endif -%}
+    </p>
+
+    <div>
+      <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-cta">
+        <span>Join The Cult @highstare_official</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hs-blood-marquee-box">
+    <div class="hs-blood-marquee-track">
+      {%- if is_doomsday -%}
+        {%- comment -%} 6 DOOMSDAY EXCLUSIVE GALLERY IMAGES REPEATED FOR INFINITE MARQUEE GLIDE {%- endcomment -%}
+        {%- for i in (1..4) -%}
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare DOOMSDAY Visual">
+            <img src="{{ 'Neon Avengers Night on Graffiti Street.png' | asset_url }}" alt="Highstare DOOMSDAY Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare DOOMSDAY Visual">
+            <img src="{{ 'Nighttime Graffiti Streetwear Portrait.png' | asset_url }}" alt="Highstare DOOMSDAY Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare DOOMSDAY Visual">
+            <img src="{{ 'Gritty Flashlit Parking Garage Streetwear.png' | asset_url }}" alt="Highstare DOOMSDAY Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare DOOMSDAY Visual">
+            <img src="{{ 'Flash-Lit DOOM Hoodie in Graffiti Alley.png' | asset_url }}" alt="Highstare DOOMSDAY Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare DOOMSDAY Visual">
+            <img src="{{ 'Neon Gaming Room Portrait.png' | asset_url }}" alt="Highstare DOOMSDAY Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare DOOMSDAY Visual">
+            <img src="{{ 'Gritty Flash Portrait by Graffiti Wall.png' | asset_url }}" alt="Highstare DOOMSDAY Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} ORIGINAL SPOTLIGHT IMAGES FOR ALL OTHER COLLECTIONS / PRODUCTS {%- endcomment -%}
+        {%- for i in (1..4) -%}
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare Streetwear Visual">
+            <img src="{{ 'spotlight-1.jpg' | asset_url }}" alt="Highstare Streetwear Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare Streetwear Visual">
+            <img src="{{ 'spotlight-2.jpg' | asset_url }}" alt="Highstare Streetwear Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare Streetwear Visual">
+            <img src="{{ 'spotlight-3.jpg' | asset_url }}" alt="Highstare Streetwear Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare Streetwear Visual">
+            <img src="{{ 'spotlight-4.jpg' | asset_url }}" alt="Highstare Streetwear Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+          <a href="https://www.instagram.com/highstare_official/" target="_blank" rel="noopener noreferrer" class="hs-blood-card" aria-label="Highstare Streetwear Visual">
+            <img src="{{ 'spotlight-5.jpg' | asset_url }}" alt="Highstare Streetwear Visual" class="hs-blood-img" loading="lazy" decoding="async" fetchpriority="low" width="600" height="750">
+          </a>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Streetwear Movement",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 52
+    }
+  ],
+  "presets": [
+    {
+      "name": "Streetwear Movement"
+    }
+  ]
+}
+{% endschema %}

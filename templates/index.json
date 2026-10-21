@@ -9,17 +9,136 @@
  */
 {
   "sections": {
-    "image_banner": {
+    "slideshow_hero": {
+      "type": "slideshow",
+      "blocks": {
+        "hero_slide_1": {
+          "type": "slide",
+          "settings": {
+            "image_asset": "Doomsday Streetwear in a Rainy Warehouse.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "hero_slide_2": {
+          "type": "slide",
+          "settings": {
+            "image_asset": "HERO.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-4"
+          }
+        }
+      },
+      "block_order": [
+        "hero_slide_1",
+        "hero_slide_2"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "fullscreen",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "premium_marquee_1": {
+      "type": "premium-marquee",
+      "settings": {
+        "speed": 100
+      }
+    },
+    "featured_collection_doomsday": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "doomsday",
+        "products_to_show": 4,
+        "title": "DOOMSDAY",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_t9MVjc": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "fifa",
+        "products_to_show": 19,
+        "title": "FIFA/26",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 5,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_lookbook": {
       "type": "image-banner",
       "settings": {
-        "image_overlay_opacity": 10,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
+        "custom_image_asset": "lookbooks1.png",
+        "custom_mobile_image_asset": "Lookbook3 .png",
+        "page_width": true,
+        "image_height": "adapt",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
+        "color_scheme": "scheme-1",
         "mobile_content_alignment": "center",
         "show_text_below": false
       }
@@ -29,18 +148,18 @@
       "settings": {
         "collection": "anime",
         "products_to_show": 6,
-        "title": "SS/01",
+        "title": "ANIME",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "columns_desktop": 3,
+        "columns_desktop": 5,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
-        "image_ratio": "portrait",
+        "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
@@ -50,34 +169,6 @@
         "swipe_on_mobile": false,
         "padding_top": 64,
         "padding_bottom": 36
-      }
-    },
-    "featured_collection_hiphop": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "hip-hop",
-        "products_to_show": 6,
-        "title": "",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 3,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "portrait",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 64
       }
     },
     "featured_product_grail": {
@@ -194,8 +285,7 @@
         "auto_rotate": true,
         "change_slides_speed": 5,
         "image_behavior": "none",
-        "show_text_below": false,
-        "accessibility_info": "Lookbook Slideshow"
+        "show_text_below": false
       }
     },
     "newsletter_drop": {
@@ -233,9 +323,12 @@
     }
   },
   "order": [
-    "image_banner",
+    "slideshow_hero",
+    "premium_marquee_1",
+    "featured_collection_doomsday",
+    "featured_collection_t9MVjc",
+    "image_banner_lookbook",
     "featured_collection_anime",
-    "featured_collection_hiphop",
     "featured_product_grail",
     "slideshow_lookbook",
     "newsletter_drop"

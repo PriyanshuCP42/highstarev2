@@ -1,0 +1,98 @@
+{% comment %}
+  Schema.org structured data for Highstare
+  Helps Google understand this is a brand/organization, not "Highstar" battery company.
+{% endcomment %}
+
+{%- if request.page_type == 'index' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "HIGHSTARE",
+  "alternateName": ["Highstare", "highstare", "High Stare"],
+  "url": "https://www.highstare.com",
+  "logo": "{{ settings.logo | default: 'logo.png' | asset_url | prepend: 'https:' }}",
+  "description": "{{ shop.description | escape | default: 'HIGHSTARE - Designed in silence. Made to be remembered. Premium streetwear clothing brand.' }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "HIGHSTARE",
+    "slogan": "Designed in silence. Made to be remembered."
+  },
+  "sameAs": [
+    {%- if settings.social_instagram_link != blank -%}"{{ settings.social_instagram_link }}"{%- endif -%}
+    {%- if settings.social_facebook_link != blank -%},"{{ settings.social_facebook_link }}"{%- endif -%}
+    {%- if settings.social_twitter_link != blank -%},"{{ settings.social_twitter_link }}"{%- endif -%}
+    {%- if settings.social_youtube_link != blank -%},"{{ settings.social_youtube_link }}"{%- endif -%}
+    {%- if settings.social_tiktok_link != blank -%},"{{ settings.social_tiktok_link }}"{%- endif -%}
+    {%- if settings.social_pinterest_link != blank -%},"{{ settings.social_pinterest_link }}"{%- endif -%}
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "url": "https://www.highstare.com/pages/contact"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "HIGHSTARE",
+  "alternateName": ["Highstare", "highstare"],
+  "url": "https://www.highstare.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.highstare.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{%- endif -%}
+
+{%- if request.page_type == 'product' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ product.title | escape }}",
+  "description": "{{ product.description | strip_html | escape | truncate: 500 }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "HIGHSTARE"
+  },
+  "url": "{{ canonical_url }}",
+  {%- if product.featured_image -%}
+  "image": "https:{{ product.featured_image | image_url }}",
+  {%- endif -%}
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ canonical_url }}",
+    "priceCurrency": "{{ cart.currency.iso_code }}",
+    "price": "{{ product.price | money_without_currency | strip_html }}",
+    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "seller": {
+      "@type": "Organization",
+      "name": "HIGHSTARE"
+    }
+  }
+}
+</script>
+{%- endif -%}
+
+{%- if request.page_type == 'collection' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "{{ collection.title | escape }} | HIGHSTARE",
+  "description": "{{ collection.description | strip_html | escape | default: 'Shop the ' | append: collection.title | append: ' collection at HIGHSTARE.' }}",
+  "url": "{{ canonical_url }}",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "HIGHSTARE",
+    "url": "https://www.highstare.com"
+  }
+}
+</script>
+{%- endif -%}

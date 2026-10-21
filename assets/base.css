@@ -97,7 +97,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 .page-width-desktop {
   padding: 0;
-  margin: 0 auto;
+  margin: 0 auto ;
 }
 
 .utility-bar__grid.page-width {
@@ -2482,6 +2482,12 @@ input[type='checkbox'] {
     text-align: center;
   }
 
+  /* Prevent long text logos like HIGHSTARE from wrapping on small mobile screens */
+  .header__heading-link .h2 {
+    white-space: nowrap;
+    font-size: calc(var(--font-heading-scale) * 2rem);
+  }
+
   .header--mobile-left .header__heading,
   .header--mobile-left .header__heading-link {
     text-align: left;
@@ -2490,6 +2496,12 @@ input[type='checkbox'] {
 
   .header--mobile-left {
     grid-template-columns: auto 2fr 1fr;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header__heading-link .h2 {
+    font-size: calc(var(--font-heading-scale) * 1.6rem); /* Shrink slightly on very narrow screens */
   }
 }
 
@@ -3613,22 +3625,39 @@ details-disclosure > details {
 
 /* --- HIGHSTARE PRODUCT PAGE OVERHAUL --- */
 
-/* Massive Product Title */
-.product__title h1 {
-  font-weight: 800 !important;
+/* Massive Product Title - Bold Streetwear Condensed */
+.product__title h1,
+.product__title .h1,
+.product__title > * {
+  font-family: 'Bebas Neue', 'Anton', sans-serif !important;
+  font-weight: 400 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  font-size: 2.5rem !important;
-  line-height: 1.1 !important;
-  margin-bottom: 0.5rem !important;
+  letter-spacing: 0.04em !important;
+  font-size: clamp(3.2rem, 4vw, 4.6rem) !important;
+  line-height: 0.95 !important;
+  margin-bottom: 0.6rem !important;
 }
 
-/* Minimal Price */
-.price--large {
-  font-weight: 500 !important;
-  font-size: 1.4rem !important;
-  color: rgba(var(--color-foreground), 0.8) !important;
-  letter-spacing: 0.03em !important;
+/* Enhanced Clean Price */
+.price--large,
+.custom-price-block .current-price,
+.product .price .price-item {
+  font-family: inherit;
+  font-weight: 800 !important;
+  font-size: 2.2rem !important;
+  color: rgb(var(--color-foreground)) !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.2 !important;
+}
+
+/* Option & Variant Labels (SIZE, QUANTITY) */
+.product-form__input .form__label,
+.quantity__label {
+  font-weight: 800 !important;
+  font-size: 1.2rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: rgb(var(--color-foreground)) !important;
 }
 
 /* Brutalist Variant Pills */
@@ -3690,12 +3719,19 @@ variant-radios label.variant__button-label:hover {
 }
 
 /* Collapsible Tabs (Accordions) Styling */
-.accordion__title {
+.accordion__title,
+.custom-accordion .accordion-header,
+.accordion-header {
+  font-family: 'Bebas Neue', 'Anton', sans-serif !important;
+  font-size: 2.5rem !important;
+  font-weight: 400 !important;
   text-transform: uppercase !important;
-  font-weight: 700 !important;
   letter-spacing: 0.05em !important;
+  line-height: 1 !important;
+  color: #111 !important;
 }
-.accordion__content p {
+.accordion__content p,
+.accordion-body {
   font-size: 1.3rem !important;
   line-height: 1.6 !important;
   color: rgba(var(--color-foreground), 0.75) !important;
@@ -3723,16 +3759,18 @@ variant-radios label.variant__button-label:hover {
   transform: none !important;
 }
 
-/* Zoom in slightly on mobile and reduce gallery height so the title is visible */
+/* Mobile product image: fill container with no white space, no transform that causes movement */
 @media screen and (max-width: 749px) {
+  .product__media {
+    overflow: hidden !important;
+  }
   .product__media img,
   .product__media-item img {
-    transform: scale(1.15) !important;
-  }
-  .product__media-list,
-  .product__media-item,
-  .product-media-container {
-    max-height: 60vh !important;
+    object-fit: cover !important;
+    object-position: center 35% !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
   }
 }
 

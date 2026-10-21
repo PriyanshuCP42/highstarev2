@@ -1,32 +1,103 @@
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 
-{%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- if section.settings.custom_image_asset != blank -%}
   {%- style -%}
     @media screen and (max-width: 749px) {
-      #Banner-{{ section.id }}::before,
-      #Banner-{{ section.id }} .banner__media::before,
-      #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
+      #Banner-{{ section.id }} {
+        height: auto !important;
+        min-height: 0 !important;
       }
-    }
-
-    @media screen and (min-width: 750px) {
       #Banner-{{ section.id }}::before,
       #Banner-{{ section.id }} .banner__media::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
+        display: none !important;
+      }
+      #Banner-{{ section.id }} .banner__media {
+        position: relative !important;
+        height: auto !important;
+      }
+      #Banner-{{ section.id }} .banner__media img {
+        position: relative !important;
+        height: auto !important;
         display: block;
+      }
+      #Banner-{{ section.id }} .banner__content {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 0 !important;
       }
     }
   {%- endstyle -%}
 {%- endif -%}
 
+{%- if section.settings.image_height == 'adapt' -%}
+  {%- if section.settings.custom_image_asset != blank -%}
+    {%- style -%}
+      #Banner-{{ section.id }} {
+        height: auto !important;
+      }
+      #Banner-{{ section.id }}::before,
+      #Banner-{{ section.id }} .banner__media::before {
+        display: none !important;
+      }
+      #Banner-{{ section.id }} .banner__media {
+        position: relative !important;
+        height: auto !important;
+      }
+      #Banner-{{ section.id }} .banner__media img {
+        position: relative !important;
+        height: auto !important;
+        display: block;
+      }
+      #Banner-{{ section.id }} .banner__content {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    {%- endstyle -%}
+  {%- elsif section.settings.image != blank -%}
+    {%- style -%}
+      @media screen and (max-width: 749px) {
+        #Banner-{{ section.id }}::before,
+        #Banner-{{ section.id }} .banner__media::before,
+        #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+          padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
+      }
+
+      @media screen and (min-width: 750px) {
+        #Banner-{{ section.id }}::before,
+        #Banner-{{ section.id }} .banner__media::before {
+          padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
+      }
+    {%- endstyle -%}
+  {%- endif -%}
+{%- endif -%}
+
 {%- style -%}
-  #Banner-{{ section.id }} {
-    height: 100vh;
-  }
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
@@ -54,8 +125,9 @@
   endif
 -%}
 
-<div
-  id="Banner-{{ section.id }}"
+<div class="section-{{ section.id }}-padding{% if section.settings.page_width %} page-width{% endif %}">
+  <div
+    id="Banner-{{ section.id }}"
   class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
     <div class="banner__media media{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -71,16 +143,52 @@
           assign sizes = full_width
         endif
       -%}
-      <img
-        src="{{ 'HERO.png' | asset_url }}"
-        class="{{ image_class }}"
-        sizes="{{ sizes }}"
-        alt="Hero Banner"
-        fetchpriority="{{ fetch_priority }}"
-        width="100%"
-        height="100%"
-        style="object-fit: cover; object-position: center; width: 100%; height: 100%;"
-      >
+      {%- if section.settings.custom_image_asset != blank -%}
+        {%- if section.settings.custom_mobile_image_asset != blank -%}
+          <picture style="display: block; width: 100%; position: relative !important; height: auto !important;">
+            <source media="(max-width: 749px)" srcset="{{ section.settings.custom_mobile_image_asset | asset_url }}">
+            <source media="(min-width: 750px)" srcset="{{ section.settings.custom_image_asset | asset_url }}">
+            <img
+              src="{{ section.settings.custom_image_asset | asset_url }}"
+              class="{{ image_class }}"
+              sizes="{{ sizes }}"
+              alt="Banner Image"
+              fetchpriority="{{ fetch_priority }}"
+              loading="{% if section.index == 1 %}eager{% else %}lazy{% endif %}"
+              width="100%"
+              height="100%"
+              style="object-fit: cover; object-position: center; width: 100%; height: auto !important; display: block;"
+            >
+          </picture>
+        {%- else -%}
+          <img
+            src="{{ section.settings.custom_image_asset | asset_url }}"
+            class="{{ image_class }}"
+            sizes="{{ sizes }}"
+            alt="Banner Image"
+            fetchpriority="{{ fetch_priority }}"
+            loading="{% if section.index == 1 %}eager{% else %}lazy{% endif %}"
+            width="100%"
+            height="100%"
+            style="object-fit: cover; object-position: center; width: 100%; height: auto !important; display: block;"
+          >
+        {%- endif -%}
+      {%- elsif section.settings.image != blank -%}
+        {%- assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio -%}
+        {{
+          section.settings.image
+          | image_url: width: 3840
+          | image_tag:
+            width: section.settings.image.width,
+            height: image_height,
+            class: image_class,
+            sizes: sizes,
+            widths: widths,
+            fetchpriority: fetch_priority
+        }}
+      {%- else -%}
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
     </div>
   {%- if section.settings.image_2 != blank -%}
     <div class="banner__media media{% if section.settings.image != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -160,6 +268,7 @@
     </div>
   </div>
 </div>
+</div>
 
 {% schema %}
 {
@@ -170,6 +279,24 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "text",
+      "id": "custom_image_asset",
+      "label": "Custom Image Asset Name (e.g. HERO.png)",
+      "info": "Leave blank to use the image picker below."
+    },
+    {
+      "type": "text",
+      "id": "custom_mobile_image_asset",
+      "label": "Custom Mobile Image Asset Name",
+      "info": "Optional: Image for mobile devices (max-width: 749px)."
+    },
+    {
+      "type": "checkbox",
+      "id": "page_width",
+      "default": false,
+      "label": "Constrain to page width"
+    },
     {
       "type": "image_picker",
       "id": "image",
@@ -237,6 +364,26 @@
       ],
       "default": "none",
       "label": "t:sections.all.animation.image_behavior.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
     },
     {
       "type": "header",

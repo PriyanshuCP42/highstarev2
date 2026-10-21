@@ -18,8 +18,12 @@
 .list-social__link {
   align-items: center;
   display: flex;
-  padding: 1.1rem;
+  padding: 1.1rem 0; /* Removed horizontal padding so it aligns flush left */
   color: rgb(var(--color-foreground));
+}
+
+.list-social {
+  gap: 2rem; /* Add gap between icons since we removed padding */
 }
 
 .utility-bar .list-social__link {
