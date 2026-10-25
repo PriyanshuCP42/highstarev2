@@ -20,44 +20,149 @@
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <product-recommendations
-    class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.products_to_show }}"
-    data-section-id="{{ section.id }}"
-    data-product-id="{{ product.id }}"
-  >
-    {% if recommendations.performed and recommendations.products_count > 0 %}
-      <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
-        {{ section.settings.heading }}
-      </h2>
-      <ul
-        class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
-        role="list"
+{%- liquid
+  assign limit = section.settings.products_to_show | default: 4
+  assign target_collection = nil
+
+  assign p_handle = product.handle | downcase
+  assign p_title = product.title | downcase
+
+  assign is_doomsday = false
+  assign is_fifa = false
+  assign is_anime = false
+
+  # 1. Check active collection context
+  if collection and collection.handle != 'all' and collection.handle != 'frontpage'
+    assign col_h = collection.handle | downcase
+    assign col_t = collection.title | downcase
+    if col_h contains 'doomsday' or col_t contains 'doomsday' or col_h contains 'doom' or col_t contains 'doom'
+      assign is_doomsday = true
+    elsif col_h contains 'fifa' or col_t contains 'fifa'
+      assign is_fifa = true
+    elsif col_h contains 'anime' or col_t contains 'anime'
+      assign is_anime = true
+    else
+      assign target_collection = collection
+    endif
+  endif
+
+  # 2. Check product collections
+  if is_doomsday == false and is_fifa == false and is_anime == false
+    for col in product.collections
+      assign c_h = col.handle | downcase
+      assign c_t = col.title | downcase
+      if c_h contains 'doomsday' or c_t contains 'doomsday' or c_h contains 'doom' or c_t contains 'doom'
+        assign is_doomsday = true
+        break
+      elsif c_h contains 'fifa' or c_t contains 'fifa'
+        assign is_fifa = true
+        break
+      elsif c_h contains 'anime' or c_t contains 'anime'
+        assign is_anime = true
+        break
+      endif
+    endfor
+  endif
+
+  # 3. Check product tags
+  if is_doomsday == false and is_fifa == false and is_anime == false
+    for tag in product.tags
+      assign t_l = tag | downcase
+      if t_l contains 'doomsday' or t_l contains 'doom'
+        assign is_doomsday = true
+        break
+      elsif t_l contains 'fifa'
+        assign is_fifa = true
+        break
+      elsif t_l contains 'anime'
+        assign is_anime = true
+        break
+      endif
+    endfor
+  endif
+
+  # 4. Check product handle and title
+  if is_doomsday == false and is_fifa == false and is_anime == false
+    if p_handle contains 'doomsday' or p_handle contains 'doom' or p_title contains 'doomsday' or p_title contains 'doom'
+      assign is_doomsday = true
+    elsif p_handle contains 'fifa' or p_title contains 'fifa' or p_handle contains 'messi' or p_handle contains 'ronaldo' or p_handle contains 'salah' or p_handle contains 'yamal'
+      assign is_fifa = true
+    elsif p_handle contains 'anime' or p_title contains 'anime' or p_handle contains 'sukuna' or p_handle contains 'eren' or p_handle contains 'guts' or p_handle contains 'itachi' or p_handle contains 'solo-leveling'
+      assign is_anime = true
+    endif
+  endif
+
+  # Assign target collection based on identified collection
+  if is_doomsday
+    assign target_collection = collections['doomsday']
+  elsif is_fifa
+    assign target_collection = collections['fifa']
+  elsif is_anime
+    assign target_collection = collections['anime']
+  elsif target_collection == nil
+    for col in product.collections
+      if col.handle != 'all' and col.handle != 'frontpage'
+        assign target_collection = col
+        break
+      endif
+    endfor
+  endif
+
+  if target_collection == nil
+    assign target_collection = collections['all']
+  endif
+-%}
+
+{%- if target_collection and target_collection.products.size > 0 -%}
+  {%- assign shown_count = 0 -%}
+  {%- capture products_markup -%}
+    {%- assign skip_card_product_styles = false -%}
+    {%- for rel_product in target_collection.products -%}
+      {%- if rel_product.id != product.id -%}
+        <li class="grid__item">
+          {% render 'card-product',
+            card_product: rel_product,
+            media_aspect_ratio: section.settings.image_ratio,
+            image_shape: section.settings.image_shape,
+            show_secondary_image: section.settings.show_secondary_image,
+            show_vendor: section.settings.show_vendor,
+            show_rating: section.settings.show_rating,
+            skip_styles: skip_card_product_styles,
+            product_view_context: 'recommendation'
+          %}
+        </li>
+        {%- assign skip_card_product_styles = true -%}
+        {%- assign shown_count = shown_count | plus: 1 -%}
+        {%- if shown_count >= limit -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if shown_count > 0 -%}
+    <div class="color-{{ section.settings.color_scheme }} gradient">
+      <div
+        class="related-products page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        data-section-id="{{ section.id }}"
+        data-product-id="{{ product.id }}"
       >
-        {% assign skip_card_product_styles = false %}
-        {% for recommendation in recommendations.products %}
-          <li class="grid__item">
-            {% render 'card-product',
-              card_product: recommendation,
-              media_aspect_ratio: section.settings.image_ratio,
-              image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
-              show_vendor: section.settings.show_vendor,
-              show_rating: section.settings.show_rating,
-              skip_styles: skip_card_product_styles,
-              product_view_context: 'recommendation'
-            %}
-          </li>
-          {%- assign skip_card_product_styles = true -%}
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </product-recommendations>
-  {% if section.settings.image_shape == 'arch' %}
-    {{ 'mask-arch.svg' | inline_asset_content }}
+        <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.heading }}
+        </h2>
+        <ul
+          class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+          role="list"
+        >
+          {{ products_markup }}
+        </ul>
+      </div>
+      {% if section.settings.image_shape == 'arch' %}
+        {{ 'mask-arch.svg' | inline_asset_content }}
+      {%- endif -%}
+    </div>
   {%- endif -%}
-</div>
+{%- endif -%}
 
 {% schema %}
 {
