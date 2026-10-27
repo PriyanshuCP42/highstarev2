@@ -683,25 +683,6 @@
   transform: scale(1.03) !important;
 }
 
-/* Bookmark Icon */
-.premium-card .card__bookmark {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 3;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  opacity: 0.6;
-}
-.premium-card .card__bookmark svg {
-  fill: #000 !important; /* Black icon */
-  width: 18px;
-  height: 22px;
-}
-.premium-card .card__bookmark:hover {
-  transform: scale(1.1);
-  opacity: 1;
-}
 
 /* Dots */
 .premium-card .card__dots {
