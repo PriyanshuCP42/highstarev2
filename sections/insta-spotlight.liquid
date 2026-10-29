@@ -315,8 +315,8 @@
 
 {%- if is_fifa -%}
   {% render 'fifa-reviews', product: product %}
-{%- elsif is_anime -%}
-  {%- comment -%} Hidden exclusively on Anime collection product page {%- endcomment -%}
+{%- elsif is_anime or is_doomsday -%}
+  {%- comment -%} Hidden on Anime and Doomsday collection product pages {%- endcomment -%}
 {%- else -%}
 <div class="hs-blood-gallery-wrapper section-{{ section.id }}-padding">
   <div class="hs-blood-header">
