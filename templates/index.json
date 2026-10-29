@@ -12,23 +12,6 @@
     "slideshow_hero": {
       "type": "slideshow",
       "blocks": {
-        "hero_slide_1": {
-          "type": "slide",
-          "settings": {
-            "image_asset": "Doomsday Streetwear in a Rainy Warehouse.png",
-            "image_overlay_opacity": 0,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "bottom-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-4"
-          }
-        },
         "hero_slide_2": {
           "type": "slide",
           "settings": {
@@ -48,25 +31,18 @@
         }
       },
       "block_order": [
-        "hero_slide_1",
         "hero_slide_2"
       ],
       "settings": {
         "layout": "full_bleed",
         "slide_height": "fullscreen",
         "slider_visual": "dots",
-        "auto_rotate": true,
+        "auto_rotate": false,
         "change_slides_speed": 5,
         "image_behavior": "none",
         "show_text_below": false,
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "premium_marquee_1": {
-      "type": "premium-marquee",
-      "settings": {
-        "speed": 100
       }
     },
     "featured_collection_doomsday": {
@@ -324,7 +300,6 @@
   },
   "order": [
     "slideshow_hero",
-    "premium_marquee_1",
     "featured_collection_doomsday",
     "featured_collection_t9MVjc",
     "image_banner_lookbook",
