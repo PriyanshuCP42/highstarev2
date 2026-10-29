@@ -1,0 +1,1000 @@
+<div id="judgeme_product_reviews" class="hs-fifa-reviews-wrapper jdgm-widget jdgm-review-widget" data-product-title="{{ product.title | escape }}" data-id="{{ product.id }}">
+  <div class="hs-fifa-reviews-inner page-width">
+    <!-- Header: Title on Left, Write a Review Button on Right (No arrow toggles) -->
+    <div class="hs-slider-header">
+      <div class="hs-slider-title-group">
+        <h2 class="hs-rev-title">WHAT CUSTOMERS SAY</h2>
+      </div>
+
+      <div class="hs-slider-actions">
+        <button type="button" class="hs-write-rev-cta" onclick="openReviewModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          Write a review
+        </button>
+      </div>
+    </div>
+
+    <!-- Slideshow Carousel Viewport (Slide by swiping right/left) -->
+    <div class="hs-slider-viewport">
+      <div class="hs-slider-track" id="hs-reviews-track">
+        <!-- Slide 1: Messi Layered Tee Gym Review (FIRST IMAGE) -->
+        <div class="hs-slide-card" onclick="openReviewLightbox('{{ 'Messi-Layered-Tee-Gym-Review.png' | asset_url }}')">
+          <div class="hs-slide-img-wrap">
+            <img
+              src="{{ 'Messi-Layered-Tee-Gym-Review.png' | asset_url }}"
+              alt="Customer Review - Messi 10 Layered Tee Gym Fit"
+              class="hs-slide-img"
+              loading="lazy"
+              decoding="async"
+              width="906"
+              height="1736"
+            >
+            <div class="hs-slide-overlay">
+              <span class="hs-slide-zoom-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+                VIEW
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Espana 19 Matchday Review -->
+        <div class="hs-slide-card" onclick="openReviewLightbox('{{ 'Espana-19-Matchday-Review.png' | asset_url }}')">
+          <div class="hs-slide-img-wrap">
+            <img
+              src="{{ 'Espana-19-Matchday-Review.png' | asset_url }}"
+              alt="Customer Review - Lamine Yamal España 19 Layered Tee"
+              class="hs-slide-img"
+              loading="lazy"
+              decoding="async"
+              width="907"
+              height="1734"
+            >
+            <div class="hs-slide-overlay">
+              <span class="hs-slide-zoom-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+                VIEW
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Messi 10 Layered Tee Mirror Review -->
+        <div class="hs-slide-card" onclick="openReviewLightbox('{{ 'Messi-10-Layered-Tee-Mirror-Review.png' | asset_url }}')">
+          <div class="hs-slide-img-wrap">
+            <img
+              src="{{ 'Messi-10-Layered-Tee-Mirror-Review.png' | asset_url }}"
+              alt="Customer Review - Messi 10 Layered Tee"
+              class="hs-slide-img"
+              loading="lazy"
+              decoding="async"
+              width="906"
+              height="1736"
+            >
+            <div class="hs-slide-overlay">
+              <span class="hs-slide-zoom-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+                VIEW
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Ronaldo 7 Washed Jersey Review -->
+        <div class="hs-slide-card" onclick="openReviewLightbox('{{ 'Ronaldo-7-Washed-Jersey-Review.png' | asset_url }}')">
+          <div class="hs-slide-img-wrap">
+            <img
+              src="{{ 'Ronaldo-7-Washed-Jersey-Review.png' | asset_url }}"
+              alt="Customer Review - Ronaldo 7 Washed Tee"
+              class="hs-slide-img"
+              loading="lazy"
+              decoding="async"
+              width="907"
+              height="1734"
+            >
+            <div class="hs-slide-overlay">
+              <span class="hs-slide-zoom-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+                VIEW
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5: Gritty Gym Tee Review -->
+        <div class="hs-slide-card" onclick="openReviewLightbox('{{ 'Gritty-Gym-Tee-Review-Card.png' | asset_url }}')">
+          <div class="hs-slide-img-wrap">
+            <img
+              src="{{ 'Gritty-Gym-Tee-Review-Card.png' | asset_url }}"
+              alt="Customer Review - Highstare Streetwear Gym Fit"
+              class="hs-slide-img"
+              loading="lazy"
+              decoding="async"
+              width="1024"
+              height="1536"
+            >
+            <div class="hs-slide-overlay">
+              <span class="hs-slide-zoom-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+                VIEW
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 6: Ronaldo 7 Vintage Tee Review -->
+        <div class="hs-slide-card" onclick="openReviewLightbox('{{ 'Ronaldo-7-Vintage-Tee-Review.png' | asset_url }}')">
+          <div class="hs-slide-img-wrap">
+            <img
+              src="{{ 'Ronaldo-7-Vintage-Tee-Review.png' | asset_url }}"
+              alt="Customer Review - Ronaldo 7 Vintage Tee"
+              class="hs-slide-img"
+              loading="lazy"
+              decoding="async"
+              width="906"
+              height="1735"
+            >
+            <div class="hs-slide-overlay">
+              <span class="hs-slide-zoom-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+                VIEW
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Judge.me native integration if real reviews exist in app -->
+    {%- if product.metafields.judgeme.widget != blank -%}
+      <div class="hs-judgeme-inject">
+        {{ product.metafields.judgeme.widget }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<!-- Review Image Lightbox Modal -->
+<div id="hs-lightbox-modal" class="hs-lightbox-backdrop" onclick="closeReviewLightbox()">
+  <div class="hs-lightbox-wrap" onclick="event.stopPropagation()">
+    <button type="button" class="hs-lightbox-close" onclick="closeReviewLightbox()" aria-label="Close image">✕</button>
+    <img id="hs-lightbox-img" src="" alt="Highstare Customer Review" class="hs-lightbox-img">
+  </div>
+</div>
+
+<!-- Authentic "Write a Review" Modal (Matching Provided Brand Design) -->
+<div id="hs-rev-modal" class="hs-rev-modal-backdrop" onclick="closeReviewModal(event)">
+  <div class="hs-rev-modal-sheet" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="hs-rev-modal-head">
+      <div>
+        <h3 class="hs-rev-modal-title">Write a review</h3>
+        <p class="hs-rev-modal-product">{{ product.title }}</p>
+      </div>
+      <button type="button" class="hs-rev-close-btn" onclick="closeReviewModal()" aria-label="Close modal">✕</button>
+    </div>
+
+    <!-- Review Form -->
+    <form id="hs-rev-form" class="hs-rev-form-body" onsubmit="handleCustomerReviewSubmit(event)">
+      <!-- Rating Stars -->
+      <div class="hs-form-field">
+        <label class="hs-field-label">RATING</label>
+        <div class="hs-stars-selector" id="hs-stars-selector">
+          <span class="hs-input-star active" data-val="1" onclick="setFormRating(1)">★</span>
+          <span class="hs-input-star active" data-val="2" onclick="setFormRating(2)">★</span>
+          <span class="hs-input-star active" data-val="3" onclick="setFormRating(3)">★</span>
+          <span class="hs-input-star active" data-val="4" onclick="setFormRating(4)">★</span>
+          <span class="hs-input-star active" data-val="5" onclick="setFormRating(5)">★</span>
+        </div>
+        <input type="hidden" id="hs-form-rating-val" value="5">
+      </div>
+
+      <!-- Name -->
+      <div class="hs-form-field">
+        <label class="hs-field-label" for="hs-input-name">NAME</label>
+        <input type="text" id="hs-input-name" class="hs-text-input" required placeholder="">
+      </div>
+
+      <!-- Email -->
+      <div class="hs-form-field">
+        <label class="hs-field-label" for="hs-input-email">EMAIL</label>
+        <input type="email" id="hs-input-email" class="hs-text-input" required placeholder="">
+      </div>
+
+      <!-- Title (Optional) -->
+      <div class="hs-form-field">
+        <label class="hs-field-label" for="hs-input-title">TITLE (OPTIONAL)</label>
+        <input type="text" id="hs-input-title" class="hs-text-input" placeholder="">
+      </div>
+
+      <!-- Review Description -->
+      <div class="hs-form-field">
+        <label class="hs-field-label" for="hs-input-review">REVIEW</label>
+        <textarea id="hs-input-review" class="hs-text-input hs-textarea-input" rows="4" required placeholder=""></textarea>
+      </div>
+
+      <!-- Photos (Optional) Upload -->
+      <div class="hs-form-field">
+        <label class="hs-field-label">PHOTOS (OPTIONAL)</label>
+        <input type="file" id="hs-photo-file-input" accept="image/*" style="display: none;" onchange="handlePhotoUploadPreview(event)">
+        
+        <div class="hs-photo-upload-wrap">
+          <button type="button" class="hs-add-photos-btn" onclick="document.getElementById('hs-photo-file-input').click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+            Add photos
+          </button>
+
+          <!-- Uploaded Photo Preview -->
+          <div id="hs-photo-preview-box" class="hs-photo-preview-box" style="display: none;">
+            <img id="hs-photo-preview-thumb" src="" alt="Photo preview" class="hs-photo-preview-thumb">
+            <button type="button" class="hs-photo-remove-btn" onclick="removeUploadedPhoto()" aria-label="Remove photo">✕</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="hs-submit-review-btn">SUBMIT REVIEW</button>
+    </form>
+
+    <!-- Success Message Box -->
+    <div id="hs-rev-success-box" class="hs-rev-success-box" style="display: none;">
+      <div class="hs-success-check-icon">✓</div>
+      <h4 class="hs-success-headline">Thank you for your review!</h4>
+      <p class="hs-success-subline">Your review has been verified and added to the collection.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Base Wrapper */
+  .hs-fifa-reviews-wrapper {
+    width: 100%;
+    background: #ffffff;
+    border-top: none;
+    border-bottom: 1px solid #eeeeee;
+    padding: 16px 0 44px;
+    font-family: inherit;
+    color: #000000;
+  }
+
+  .hs-fifa-reviews-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Header Row: Title & Action */
+  .hs-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+    gap: 16px;
+  }
+
+  .hs-rev-title {
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #000000;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* Sleek "Write a review" Trigger Button */
+  .hs-write-rev-cta {
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 0px !important;
+    padding: 10px 18px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease, opacity 0.2s ease;
+  }
+
+  .hs-write-rev-cta:hover {
+    background: #222222;
+  }
+
+  /* Slideshow Viewport */
+  .hs-slider-viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Slider Track (Slide by swiping right/left) */
+  .hs-slider-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 2px 14px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  .hs-slider-track::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  /* Sharp Rectangular Slide Cards (0px border-radius, pure rectangular image card) */
+  .hs-slide-card {
+    flex: 0 0 calc(25% - 12px);
+    max-width: 320px;
+    min-width: 250px;
+    scroll-snap-align: start;
+    background: #ffffff;
+    border-radius: 0px !important;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #e2e2e2;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .hs-slide-card:hover {
+    border-color: #000000;
+    transform: translateY(-3px);
+  }
+
+  @media (max-width: 1024px) {
+    .hs-slide-card {
+      flex: 0 0 calc(33.333% - 11px);
+      min-width: 230px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hs-slide-card {
+      flex: 0 0 calc(50% - 8px);
+      min-width: 190px;
+    }
+    .hs-slider-track {
+      gap: 10px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .hs-slide-card {
+      flex: 0 0 78vw;
+      max-width: 310px;
+      scroll-snap-align: center;
+    }
+  }
+
+  .hs-slide-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 907 / 1734;
+    overflow: hidden;
+    background: #f5f5f5;
+    border-radius: 0px !important;
+  }
+
+  .hs-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0px !important;
+    transition: transform 0.35s ease;
+  }
+
+  .hs-slide-card:hover .hs-slide-img {
+    transform: scale(1.02);
+  }
+
+  .hs-slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 72%, rgba(0,0,0,0.65) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 12px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: 0px !important;
+  }
+
+  .hs-slide-card:hover .hs-slide-overlay {
+    opacity: 1;
+  }
+
+  .hs-slide-zoom-badge {
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 6px 14px;
+    border-radius: 0px !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* User-Submitted Card Style */
+  .hs-user-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background: #fafafa;
+    border: 1px solid #111111;
+  }
+
+  .hs-user-card-stars {
+    color: #d4a359;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .hs-user-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 8px;
+  }
+
+  .hs-user-card-body {
+    font-size: 0.88rem;
+    color: #333333;
+    line-height: 1.5;
+    margin: 0 0 14px;
+    flex-grow: 1;
+  }
+
+  .hs-user-card-author {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .hs-user-card-tag {
+    font-size: 0.74rem;
+    color: #777;
+  }
+
+  /* Lightbox Modal */
+  .hs-lightbox-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(6px);
+    z-index: 999999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: zoom-out;
+  }
+
+  .hs-lightbox-backdrop.open {
+    display: flex;
+  }
+
+  .hs-lightbox-wrap {
+    position: relative;
+    max-width: 500px;
+    max-height: 90vh;
+    border-radius: 0px !important;
+    overflow: hidden;
+    cursor: default;
+    border: 1px solid #333333;
+  }
+
+  .hs-lightbox-img {
+    display: block;
+    width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 0px !important;
+  }
+
+  .hs-lightbox-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 0px !important;
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .hs-lightbox-close:hover {
+    background: #222222;
+  }
+
+  /* ========================================================
+     AUTHENTIC "WRITE A REVIEW" MODAL (Matching Brand Design)
+     ======================================================== */
+  .hs-rev-modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 999999;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .hs-rev-modal-backdrop.open {
+    display: flex;
+  }
+
+  .hs-rev-modal-sheet {
+    background: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 6px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+    box-sizing: border-box;
+    max-height: 92vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 28px 24px 32px;
+  }
+
+  .hs-rev-modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .hs-rev-modal-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #111111;
+    margin: 0 0 4px;
+    line-height: 1.2;
+  }
+
+  .hs-rev-modal-product {
+    font-size: 0.88rem;
+    color: #666666;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .hs-rev-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: #777777;
+    padding: 4px;
+    line-height: 1;
+    transition: color 0.15s ease;
+  }
+
+  .hs-rev-close-btn:hover {
+    color: #000000;
+  }
+
+  .hs-rev-form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hs-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .hs-field-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #555555;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  /* Stars Picker */
+  .hs-stars-selector {
+    display: inline-flex;
+    gap: 6px;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .hs-input-star {
+    font-size: 1.85rem;
+    color: #e0e0e0;
+    transition: color 0.15s ease;
+    user-select: none;
+  }
+
+  .hs-input-star.active {
+    color: #d4a359;
+  }
+
+  /* Form Inputs */
+  .hs-text-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 11px 14px;
+    font-size: 0.92rem;
+    font-family: inherit;
+    color: #111111;
+    outline: none;
+    transition: border-color 0.2s ease;
+    background: #ffffff;
+  }
+
+  .hs-text-input:focus {
+    border-color: #111111;
+  }
+
+  .hs-textarea-input {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  /* Add Photos Dashed Button */
+  .hs-photo-upload-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hs-add-photos-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #ffffff;
+    border: 1.5px dashed #bbbbbb;
+    border-radius: 4px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #333333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .hs-add-photos-btn:hover {
+    border-color: #111111;
+    color: #000000;
+    background: #fafafa;
+  }
+
+  .hs-photo-preview-box {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #cccccc;
+  }
+
+  .hs-photo-preview-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hs-photo-remove-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  /* Submit Button */
+  .hs-submit-review-btn {
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 0px !important;
+    padding: 15px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .hs-submit-review-btn:hover {
+    background: #222222;
+  }
+
+  /* Success Confirmation */
+  .hs-rev-success-box {
+    text-align: center;
+    padding: 36px 16px;
+  }
+
+  .hs-success-check-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #eef7ee;
+    color: #2e7d32;
+    font-size: 1.6rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+
+  .hs-success-headline {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #111111;
+    margin: 0 0 6px;
+  }
+
+  .hs-success-subline {
+    font-size: 0.88rem;
+    color: #666666;
+    margin: 0;
+  }
+</style>
+
+<script>
+  let uploadedPhotoBase64 = null;
+
+  // Star Rating Picker
+  function setFormRating(val) {
+    document.getElementById('hs-form-rating-val').value = val;
+    const stars = document.querySelectorAll('#hs-stars-selector .hs-input-star');
+    stars.forEach(star => {
+      const sVal = parseInt(star.getAttribute('data-val'));
+      if (sVal <= val) {
+        star.classList.add('active');
+      } else {
+        star.classList.remove('active');
+      }
+    });
+  }
+
+  // Handle Photo File Upload Preview
+  function handlePhotoUploadPreview(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      uploadedPhotoBase64 = event.target.result;
+      const previewBox = document.getElementById('hs-photo-preview-box');
+      const previewThumb = document.getElementById('hs-photo-preview-thumb');
+      if (previewBox && previewThumb) {
+        previewThumb.src = uploadedPhotoBase64;
+        previewBox.style.display = 'block';
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removeUploadedPhoto() {
+    uploadedPhotoBase64 = null;
+    const fileInput = document.getElementById('hs-photo-file-input');
+    const previewBox = document.getElementById('hs-photo-preview-box');
+    if (fileInput) fileInput.value = '';
+    if (previewBox) previewBox.style.display = 'none';
+  }
+
+  // Open & Close Modal
+  function openReviewModal() {
+    const modal = document.getElementById('hs-rev-modal');
+    if (modal) {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeReviewModal(e) {
+    const modal = document.getElementById('hs-rev-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Submit Review Form & Append to Track
+  function handleCustomerReviewSubmit(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('hs-input-name').value.trim();
+    const email = document.getElementById('hs-input-email').value.trim();
+    const title = document.getElementById('hs-input-title').value.trim();
+    const review = document.getElementById('hs-input-review').value.trim();
+    const rating = document.getElementById('hs-form-rating-val').value;
+
+    const newReview = {
+      id: Date.now(),
+      name: name,
+      email: email,
+      title: title || 'Verified Purchase',
+      review: review,
+      rating: rating,
+      photo: uploadedPhotoBase64,
+      date: 'Just now'
+    };
+
+    // Store in localStorage for permanence
+    try {
+      const storageKey = 'hs_user_reviews_' + ('{{ product.id }}' || 'fifa');
+      const existing = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      existing.unshift(newReview);
+      localStorage.setItem(storageKey, JSON.stringify(existing));
+    } catch(err) {}
+
+    // Add card into the carousel track immediately
+    prependReviewCard(newReview);
+
+    // Show success view
+    const form = document.getElementById('hs-rev-form');
+    const successBox = document.getElementById('hs-rev-success-box');
+    if (form && successBox) {
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+      setTimeout(() => {
+        closeReviewModal();
+        // Reset form
+        form.reset();
+        removeUploadedPhoto();
+        setFormRating(5);
+        form.style.display = 'flex';
+        successBox.style.display = 'none';
+      }, 2000);
+    }
+  }
+
+  // Render a customer review card into track
+  function prependReviewCard(rev) {
+    const track = document.getElementById('hs-reviews-track');
+    if (!track) return;
+
+    const card = document.createElement('div');
+    card.className = 'hs-slide-card';
+
+    if (rev.photo) {
+      card.onclick = function() { openReviewLightbox(rev.photo); };
+      card.innerHTML = `
+        <div class="hs-slide-img-wrap">
+          <img src="${rev.photo}" alt="${rev.name}" class="hs-slide-img" width="906" height="1735">
+          <div class="hs-slide-overlay">
+            <span class="hs-slide-zoom-badge">VIEW</span>
+          </div>
+        </div>
+      `;
+    } else {
+      let starsHtml = '★★★★★';
+      card.className += ' hs-user-card';
+      card.innerHTML = `
+        <div>
+          <div class="hs-user-card-stars">${starsHtml}</div>
+          <h4 class="hs-user-card-title">${rev.title}</h4>
+          <p class="hs-user-card-body">${rev.review}</p>
+        </div>
+        <div>
+          <div class="hs-user-card-author">${rev.name} <span style="color:#2e7d32; font-weight:600;">✓ Verified</span></div>
+          <div class="hs-user-card-tag">{{ product.title }}</div>
+        </div>
+      `;
+    }
+
+    track.prepend(card);
+    track.scrollTo({ left: 0, behavior: 'smooth' });
+  }
+
+  // Load any previously saved user reviews on load
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      const storageKey = 'hs_user_reviews_' + ('{{ product.id }}' || 'fifa');
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      if (Array.isArray(saved)) {
+        saved.forEach(rev => prependReviewCard(rev));
+      }
+    } catch(err) {}
+  });
+
+  // Lightbox
+  function openReviewLightbox(imgSrc) {
+    const modal = document.getElementById('hs-lightbox-modal');
+    const img = document.getElementById('hs-lightbox-img');
+    if (modal && img) {
+      img.src = imgSrc;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeReviewLightbox() {
+    const modal = document.getElementById('hs-lightbox-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeReviewLightbox();
+      closeReviewModal();
+    }
+  });
+</script>

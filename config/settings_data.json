@@ -141,6 +141,13 @@
       }
     },
     "content_for_index": [],
+    "blocks": {
+      "8670728856252544919": {
+        "type": "shopify://apps/essential-estimated/blocks/app-embed/02a895dd-b5b5-4103-8966-c6914aa8309e",
+        "disabled": false,
+        "settings": {}
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
@@ -155,11 +162,11 @@
       },
       "scheme-2": {
         "settings": {
-          "background": "#F9F6EE",
+          "background": "#f9f6ee",
           "background_gradient": "",
           "text": "#121212",
           "button": "#121212",
-          "button_label": "#F9F6EE",
+          "button_label": "#f9f6ee",
           "secondary_button_label": "#121212",
           "shadow": "#121212"
         }

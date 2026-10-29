@@ -1,0 +1,186 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_WmJbbt": {
+          "type": "price",
+          "disabled": true,
+          "settings": {}
+        },
+        "custom_liquid_T4eEW8": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign product = product %}\n{% assign current_variant = product.selected_or_first_available_variant %}\n{% assign compare = current_variant.compare_at_price %}\n{% assign price = current_variant.price %}\n\n{% if compare and compare > price %}\n  {% assign discount = compare | minus: price %}\n  {% assign discount_percent = discount | times: 100.0 | divided_by: compare | round %}\n{% endif %}\n\n<div class=\"custom-price-block\">\n  <span class=\"current-price\">{{ price | money }}</span>\n\n  {% if compare and compare > price %}\n    <span class=\"compare-price\">{{ compare | money }}</span>\n    <span class=\"discount-badge\">{{ discount_percent }}% OFF</span>\n  {% endif %}\n</div>\n\n<style>\n  .custom-price-block {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-wrap: wrap;\n    font-family: inherit;\n    width: 100%;\n    border-bottom: 1px solid #e5e5e5;\n    padding-bottom: 14px;\n    margin-bottom: 14px;\n  }\n\n  .current-price {\n    font-size: 1.75rem;\n    font-weight: 400;\n    color: #666;\n  }\n\n  .compare-price {\n    font-size: 1.1rem;\n    color: #999;\n    text-decoration: line-through;\n  }\n\n  .discount-badge {\n    background-color: #e63946;\n    color: #fff;\n    font-size: 0.8rem;\n    font-weight: 700;\n    padding: 4px 10px;\n    border-radius: 20px;\n    letter-spacing: 0.5px;\n  }\n</style>"
+          }
+        },
+        "custom_liquid_reviews_badge": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "{%- liquid\n  assign p_id = product.id | default: 12345678\n  assign mod_10 = p_id | modulo: 10\n  assign mod_290 = p_id | modulo: 290\n  if mod_10 <= 3\n    assign p_rating = '4.6'\n  elsif mod_10 <= 7\n    assign p_rating = '4.7'\n  else\n    assign p_rating = '4.8'\n  endif\n  assign p_reviews = 175 | plus: mod_290 | plus: mod_10\n-%}\n<div class=\"trust-review-badge\" onclick=\"scrollToReviews()\">\n  <div class=\"stars-group\">\n    <span class=\"star-icon\">★</span>\n    <span class=\"star-icon\">★</span>\n    <span class=\"star-icon\">★</span>\n    <span class=\"star-icon\">★</span>\n    <span class=\"star-icon\">★</span>\n  </div>\n  <span class=\"rating-score\">{{ p_rating }}</span>\n  <span class=\"rating-count\">({{ p_reviews }} reviews)</span>\n  <span class=\"verified-tag\">✓ Verified</span>\n</div>\n\n<style>\n  .product__info-container > .trust-review-badge,\n  .trust-review-badge {\n    display: inline-flex;\n    align-items: center;\n    gap: 9px;\n    margin-top: 4px !important;\n    margin-bottom: 14px !important;\n    cursor: pointer;\n    font-family: inherit;\n    flex-wrap: wrap;\n    transition: transform 0.15s ease;\n  }\n  .trust-review-badge:hover {\n    transform: translateY(-1px);\n  }\n  .trust-review-badge:hover .rating-count {\n    text-decoration: underline;\n    color: #111;\n  }\n  .stars-group {\n    display: inline-flex;\n    color: #ffb800;\n    font-size: 1.35rem;\n    letter-spacing: 2px;\n    line-height: 1;\n  }\n  .rating-score {\n    font-weight: 700;\n    font-size: 1.15rem;\n    color: #111;\n  }\n  .rating-count {\n    font-size: 1.05rem;\n    color: #444;\n    font-weight: 500;\n  }\n  .verified-tag {\n    background: #eef7ee;\n    color: #2e7d32;\n    font-size: 0.85rem;\n    font-weight: 600;\n    padding: 4px 10px;\n    border-radius: 20px;\n    letter-spacing: 0.3px;\n    display: inline-flex;\n    align-items: center;\n  }\n  .product__info-container .jdgm-prev-badge,\n  .product__info-container .jdgm-preview-badge {\n    display: none !important;\n  }\n</style>\n\n<script>\n  function scrollToReviews() {\n    const target = document.querySelector('.jdgm-rev-widg') || document.querySelector('[id*=\"judge_me\"]') || document.querySelector('#judgeme_product_reviews') || document.querySelector('.custom-accordion');\n    if (target) {\n      target.scrollIntoView({ behavior: 'smooth', block: 'start' });\n    }\n  }\n</script>"
+          }
+        },
+        "custom_liquid_cKUXNp": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<!-- Size Chart Button -->\n<div class=\"size-chart-wrap\">\n  <button class=\"size-chart-btn\" onclick=\"openSizeChart()\">📏 Size Chart</button>\n</div>\n\n<!-- Modal Overlay -->\n<div class=\"size-modal-overlay\" id=\"sizeChartModal\" onclick=\"closeSizeChart()\">\n  <div class=\"size-modal-box\" onclick=\"event.stopPropagation()\">\n    <button class=\"size-modal-close\" onclick=\"closeSizeChart()\">✕</button>\n    <h3 class=\"size-modal-title\">Size Chart</h3>\n    <p class=\"size-modal-note\">All measurements are in <strong>inches</strong></p>\n\n    <div class=\"size-table-wrap\">\n      <table class=\"size-table\">\n        <thead>\n          <tr>\n            <th>Size</th>\n            <th>Chest</th>\n            <th>Length</th>\n            <th>Shoulder</th>\n            <th>Sleeve</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr><td>XS</td><td>36</td><td>26</td><td>16</td><td>8</td></tr>\n          <tr><td>S</td><td>38</td><td>27</td><td>17</td><td>8.5</td></tr>\n          <tr><td>M</td><td>40</td><td>28</td><td>18</td><td>9</td></tr>\n          <tr><td>L</td><td>42</td><td>29</td><td>19</td><td>9.5</td></tr>\n          <tr><td>XL</td><td>44</td><td>30</td><td>20</td><td>10</td></tr>\n          <tr><td>XXL</td><td>46</td><td>31</td><td>21</td><td>10.5</td></tr>\n        </tbody>\n      </table>\n    </div>\n\n    <div class=\"size-how-to\">\n      <h4>How to Measure</h4>\n      <ul>\n        <li><strong>Chest:</strong> Measure around the fullest part of your chest</li>\n        <li><strong>Length:</strong> Measure from shoulder top to hem</li>\n        <li><strong>Shoulder:</strong> Measure from shoulder seam to seam</li>\n        <li><strong>Sleeve:</strong> Measure from shoulder seam to cuff</li>\n      </ul>\n    </div>\n  </div>\n</div>\n\n<style>\n  .size-chart-wrap {\n    margin: 8px 0;\n  }\n\n  .size-chart-btn {\n    background: none;\n    border: 1.5px solid #111;\n    padding: 8px 18px;\n    font-size: 1.rem;\n    font-weight: 600;\n    cursor: pointer;\n    border-radius: 4px;\n    letter-spacing: 0.5px;\n    transition: all 0.2s ease;\n  }\n\n  .size-chart-btn:hover {\n    background: #111;\n    color: #fff;\n  }\n\n  .size-modal-overlay {\n    display: none;\n    position: fixed;\n    inset: 0;\n    background: rgba(0,0,0,0.55);\n    z-index: 9999;\n    justify-content: center;\n    align-items: center;\n  }\n\n  .size-modal-overlay.active {\n    display: flex;\n  }\n\n  .size-modal-box {\n    background: #fff;\n    border-radius: 10px;\n    padding: 28px 24px;\n    width: 90%;\n    max-width: 520px;\n    max-height: 85vh;\n    overflow-y: auto;\n    position: relative;\n  }\n\n  .size-modal-close {\n    position: absolute;\n    top: 14px;\n    right: 16px;\n    background: none;\n    border: none;\n    font-size: 1.2rem;\n    cursor: pointer;\n    color: #555;\n  }\n\n  .size-modal-title {\n    font-size: 1.2rem;\n    font-weight: 700;\n    margin-bottom: 4px;\n  }\n\n  .size-modal-note {\n    font-size: 0.8rem;\n    color: #888;\n    margin-bottom: 16px;\n  }\n\n  .size-table-wrap {\n    overflow-x: auto;\n  }\n\n  .size-table {\n    width: 100%;\n    border-collapse: collapse;\n    font-size: 0.88rem;\n  }\n\n  .size-table th {\n    background: #111;\n    color: #fff;\n    padding: 10px 12px;\n    text-align: center;\n  }\n\n  .size-table td {\n    padding: 9px 12px;\n    text-align: center;\n    border-bottom: 1px solid #eee;\n  }\n\n  .size-table tbody tr:nth-child(even) {\n    background: #f9f9f9;\n  }\n\n  .size-table tbody tr:hover {\n    background: #f0f0f0;\n  }\n\n  .size-how-to {\n    margin-top: 20px;\n    padding-top: 16px;\n    border-top: 1px solid #eee;\n  }\n\n  .size-how-to h4 {\n    font-size: 0.95rem;\n    font-weight: 700;\n    margin-bottom: 10px;\n  }\n\n  .size-how-to ul {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n  }\n\n  .size-how-to ul li {\n    font-size: 0.85rem;\n    color: #555;\n    padding: 5px 0;\n    border-bottom: 1px dashed #eee;\n  }\n</style>\n\n<script>\n  function openSizeChart() {\n    const modal = document.getElementById('sizeChartModal');\n    if (modal.parentNode !== document.body) {\n      document.body.appendChild(modal);\n    }\n    modal.classList.add('active');\n    document.body.style.overflow = 'hidden';\n  }\n\n  function closeSizeChart() {\n    document.getElementById('sizeChartModal').classList.remove('active');\n    document.body.style.overflow = '';\n  }\n</script>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "custom_liquid_urgency": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "{% assign current_variant = product.selected_or_first_available_variant %}\n<div class=\"urgency-banner\" id=\"urgency-banner-{{ section.id }}\">\n  <span class=\"urgency-text\">\n    {% if current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= 10 %}\n      Hurry! Only <strong>{{ current_variant.inventory_quantity }}</strong> left in stock.\n    {% else %}\n      <span class=\"pulse-dot\"></span> <strong id=\"viewer-count\">12</strong> people are viewing this right now.\n    {% endif %}\n  </span>\n</div>\n\n<style>\n  .urgency-banner {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    background-color: #fff4f4;\n    border: 1px solid #ffcccc;\n    padding: 10px 14px;\n    border-radius: 6px;\n    margin: 12px 0 16px;\n    color: #d8000c;\n    font-size: 0.95rem;\n  }\n  .urgency-text {\n    flex-grow: 1;\n  }\n  .pulse-dot {\n    display: inline-block;\n    width: 8px;\n    height: 8px;\n    background-color: #d8000c;\n    border-radius: 50%;\n    margin-right: 4px;\n    animation: pulse 1.5s infinite;\n  }\n  @keyframes pulse {\n    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(216, 0, 12, 0.7); }\n    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(216, 0, 12, 0); }\n    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(216, 0, 12, 0); }\n  }\n</style>\n\n<script>\n  document.addEventListener('DOMContentLoaded', function() {\n    const viewerCountEl = document.getElementById('viewer-count');\n    if (viewerCountEl) {\n      let count = Math.floor(Math.random() * (15 - 5 + 1)) + 5;\n      viewerCountEl.textContent = count;\n      setInterval(() => {\n        const change = Math.random() > 0.5 ? 1 : -1;\n        count = count + change;\n        if (count < 3) count = 3;\n        if (count > 25) count = 25;\n        viewerCountEl.textContent = count;\n      }, 5000 + Math.random() * 5000);\n    }\n  });\n</script>"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "essential_estimated_app_block_ctY7nF": {
+          "type": "shopify://apps/essential-estimated/blocks/app-block/02a895dd-b5b5-4103-8966-c6914aa8309e",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "trust_badges": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<div class=\"custom-trust-badges\">\n  <div class=\"trust-title\">\n    <span class=\"trust-icon\">🔒</span> GUARANTEED SECURE CHECKOUT\n  </div>\n  <div class=\"trust-payment-icons\">\n    <img src=\"https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg\" alt=\"PhonePe\" style=\"height:24px; width:auto; border-radius:3px;\">\n    <img src=\"https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg\" alt=\"Paytm\" style=\"height:24px; width:auto; border-radius:3px;\">\n    {{ 'visa' | payment_type_svg_tag: class: 'icon icon--full-color' }}\n    {{ 'master' | payment_type_svg_tag: class: 'icon icon--full-color' }}\n    <div style=\"display:flex; align-items:center; background:#fff; border:1px solid #e2e2e2; border-radius:3px; padding:0 6px; height:24px; font-size:10px; font-weight:700; color:#333;\">💳 DEBIT CARDS</div>\n  </div>\n\n  <div class=\"delivery-journey\">\n    <div class=\"journey-step\">\n      <div class=\"step-icon\">📦</div>\n      <div class=\"step-text\">Order<br>Placed</div>\n    </div>\n    <div class=\"journey-line\"></div>\n    <div class=\"journey-step\">\n      <div class=\"step-icon\">🚚</div>\n      <div class=\"step-text\">Dispatched<br>in 24 Hrs</div>\n    </div>\n    <div class=\"journey-line\"></div>\n    <div class=\"journey-step\">\n      <div class=\"step-icon\">🏠</div>\n      <div class=\"step-text\">Delivered<br>in 6-7 Days</div>\n    </div>\n  </div>\n</div>\n\n<style>\n  .custom-trust-badges {\n    margin-top: 0.5rem;\n    padding: 1.5rem 1.2rem;\n    background: #fafafa;\n    border: 1px solid #eaeaea;\n    border-radius: 0.4rem;\n    text-align: center;\n    margin-bottom: 2rem;\n  }\n  .custom-trust-badges .trust-title {\n    font-size: 1.1rem;\n    font-weight: 800;\n    letter-spacing: 0.05em;\n    color: #111;\n    margin-bottom: 1.2rem;\n    text-transform: uppercase;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 0.5rem;\n  }\n  .custom-trust-badges .trust-payment-icons {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 0.6rem;\n    margin-bottom: 2rem;\n  }\n  .custom-trust-badges .trust-payment-icons svg {\n    width: auto;\n    height: 24px;\n  }\n  \n  .delivery-journey {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    max-width: 320px;\n    margin: 0 auto;\n    padding-top: 1rem;\n    border-top: 1px dashed #ddd;\n  }\n  .journey-step {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 0.4rem;\n    position: relative;\n    z-index: 2;\n  }\n  .step-icon {\n    font-size: 1.6rem;\n    background: #fff;\n    width: 3.5rem;\n    height: 3.5rem;\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border: 2px solid #111;\n    box-shadow: 0 4px 6px rgba(0,0,0,0.05);\n  }\n  .step-text {\n    font-size: 0.85rem;\n    font-weight: 700;\n    color: #444;\n    line-height: 1.2;\n    text-transform: uppercase;\n  }\n  .journey-line {\n    flex-grow: 1;\n    height: 2px;\n    background: #111;\n    margin: 0 -1rem;\n    margin-top: -2rem; /* offset to align with circle center */\n    z-index: 1;\n  }\n</style>"
+          }
+        },
+        "tab_why_love": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Why You'll Love It",
+            "icon": "heart",
+            "content": "<p>✔ Premium <strong>240 GSM Heavyweight Cotton</strong></p><p>✔ Relaxed <strong>Oversized Streetwear Fit</strong></p><p>✔ High-Definition Front & Back Graphic Print</p><p>✔ Soft, Breathable & Comfortable for All-Day Wear</p>",
+            "page": ""
+          }
+        },
+        "tab_details": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Product Details",
+            "icon": "shirt",
+            "content": "<p>✔ Durable, Fade-Resistant Premium Print</p><p>✔ Built for Everyday Streetwear</p><p>✔ Unisex Design</p><p>✔ Made in India</p>",
+            "page": ""
+          }
+        },
+        "tab_care": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Care Instructions",
+            "icon": "washing",
+            "content": "<p>Machine wash cold, inside out. Hang dry. Do not iron directly on graphic.</p>",
+            "page": ""
+          }
+        },
+        "custom_liquid_M6yxCE": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"custom-accordion\">\n\n  <!-- Description -->\n  <div class=\"accordion-item\">\n    <button class=\"accordion-header\" onclick=\"toggleAccordion(this)\">\n       Description <span class=\"accordion-icon\">+</span>\n    </button>\n    <div class=\"accordion-body\">\n      {{ product.description }}\n    </div>\n  </div>\n\n  <!-- Wash Care -->\n  <div class=\"accordion-item\">\n    <button class=\"accordion-header\" onclick=\"toggleAccordion(this)\">\n      Wash Care <span class=\"accordion-icon\">+</span>\n    </button>\n    <div class=\"accordion-body\">\n      <ul class=\"wash-care-list\">\n        <li>🌡️ Machine wash cold (30°C max)</li>\n        <li>🚫 Do not bleach</li>\n        <li>🔄 Tumble dry low</li>\n        <li>🧲 Do not iron on print</li>\n        <li>❌ Do not dry clean</li>\n        <li>↩️ Wash inside out to preserve print</li>\n      </ul>\n    </div>\n  </div>\n\n</div>\n\n<style>\n  .custom-accordion {\n    margin: 16px 0 0 0;\n    border-top: 1px solid #e0e0e0;\n  }\n\n  .accordion-item {\n    border-bottom: 1px solid #e0e0e0;\n  }\n\n  .accordion-header {\n    width: 100%;\n    background: none;\n    border: none;\n    padding: 14px 4px;\n    font-family: 'Bebas Neue', 'Anton', sans-serif;\n    font-size: 2.6rem;\n    font-weight: 400;\n    text-transform: uppercase;\n    text-align: left;\n    cursor: pointer;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    color: #111;\n    letter-spacing: 0.05em;\n    line-height: 1;\n  }\n\n  .accordion-header:hover {\n    color: #e63946;\n  }\n\n  .accordion-icon {\n    font-size: 1.3rem;\n    font-weight: 400;\n    transition: transform 0.3s ease;\n  }\n\n  .accordion-body {\n    display: none;\n    padding: 10px 4px 18px;\n    font-size: 0.9rem;\n    color: #444;\n    line-height: 1.7;\n  }\n\n  .accordion-body.open {\n    display: block;\n  }\n\n  .spec-table {\n    width: 100%;\n    border-collapse: collapse;\n  }\n\n  .spec-table tr td {\n    padding: 8px 10px;\n    border: 1px solid #eee;\n    font-size: 0.88rem;\n  }\n\n  .spec-table tr td:first-child {\n    font-weight: 600;\n    background: #f9f9f9;\n    width: 40%;\n  }\n\n  .wash-care-list {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n  }\n\n  .wash-care-list li {\n    padding: 6px 0;\n    border-bottom: 1px dashed #eee;\n    font-size: 0.88rem;\n  }\n</style>\n\n<script>\n  function toggleAccordion(btn) {\n    const body = btn.nextElementSibling;\n    const icon = btn.querySelector('.accordion-icon');\n    const isOpen = body.classList.contains('open');\n\n    // Close all\n    document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));\n    document.querySelectorAll('.accordion-icon').forEach(i => i.textContent = '+');\n\n    // Open clicked (if it was closed)\n    if (!isOpen) {\n      body.classList.add('open');\n      icon.textContent = '−';\n    }\n  }\n</script>"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price_WmJbbt",
+        "custom_liquid_T4eEW8",
+        "variant_picker",
+        "custom_liquid_urgency",
+        "buy_buttons",
+        "essential_estimated_app_block_ctY7nF",
+        "trust_badges",
+        "tab_why_love",
+        "tab_details",
+        "tab_care",
+        "custom_liquid_M6yxCE"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": false,
+        "media_fit": "cover",
+        "gallery_layout": "columns",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "fifa-reviews": {
+      "type": "fifa-reviews",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 24
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "178496208852e2b505": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "fifa-reviews",
+    "related-products",
+    "178496208852e2b505"
+  ]
+}

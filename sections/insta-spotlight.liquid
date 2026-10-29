@@ -202,57 +202,87 @@
 
 {%- liquid
   assign is_doomsday = false
-  if collection
-    assign col_handle = collection.handle | downcase
-    assign col_title = collection.title | downcase
-    if col_handle contains 'doomsday'
+  assign is_fifa = false
+
+  # 1. Check active collection context
+  if collection and collection.handle != 'all' and collection.handle != 'frontpage'
+    assign col_h = collection.handle | downcase
+    assign col_t = collection.title | downcase
+    if col_h contains 'doomsday' or col_t contains 'doomsday' or col_h contains 'doom' or col_t contains 'doom'
       assign is_doomsday = true
-    elsif col_title contains 'doomsday'
-      assign is_doomsday = true
+    elsif col_h contains 'fifa' or col_t contains 'fifa'
+      assign is_fifa = true
     endif
   endif
+
+  # 2. Check product collections
   if product
-    for col in product.collections
-      assign c_handle = col.handle | downcase
-      assign c_title = col.title | downcase
-      if c_handle contains 'doomsday'
-        assign is_doomsday = true
-        break
-      elsif c_title contains 'doomsday'
-        assign is_doomsday = true
-        break
-      elsif c_handle contains 'doom'
-        assign is_doomsday = true
-        break
-      elsif c_title contains 'doom'
-        assign is_doomsday = true
-        break
+    if is_fifa == false
+      for col in product.collections
+        assign c_h = col.handle | downcase
+        assign c_t = col.title | downcase
+        if c_h contains 'fifa' or c_t contains 'fifa'
+          assign is_fifa = true
+          break
+        endif
+      endfor
+    endif
+
+    # 3. Check product tags
+    if is_fifa == false
+      for tag in product.tags
+        assign t_l = tag | downcase
+        if t_l contains 'fifa'
+          assign is_fifa = true
+          break
+        endif
+      endfor
+    endif
+
+    # 4. Check product handle and title
+    if is_fifa == false
+      assign p_handle = product.handle | downcase
+      assign p_title = product.title | downcase
+      if p_handle contains 'fifa' or p_title contains 'fifa' or p_handle contains 'messi' or p_handle contains 'ronaldo' or p_handle contains 'salah' or p_handle contains 'yamal' or p_handle contains 'neymar' or p_handle contains 'mbappe' or p_handle contains 'bellingham' or p_handle contains 'football' or p_title contains 'messi' or p_title contains 'ronaldo' or p_title contains 'salah' or p_title contains 'yamal' or p_title contains 'football'
+        assign is_fifa = true
       endif
-    endfor
-    for tag in product.tags
-      assign tag_lower = tag | downcase
-      if tag_lower contains 'doomsday'
+    endif
+
+    # 5. Check Doomsday
+    if is_doomsday == false and is_fifa == false
+      for col in product.collections
+        assign c_h = col.handle | downcase
+        assign c_t = col.title | downcase
+        if c_h contains 'doomsday' or c_t contains 'doomsday' or c_h contains 'doom' or c_t contains 'doom'
+          assign is_doomsday = true
+          break
+        endif
+      endfor
+    endif
+
+    if is_doomsday == false and is_fifa == false
+      for tag in product.tags
+        assign tag_lower = tag | downcase
+        if tag_lower contains 'doomsday' or tag_lower contains 'doom'
+          assign is_doomsday = true
+          break
+        endif
+      endfor
+    endif
+
+    if is_doomsday == false and is_fifa == false
+      assign prod_handle = product.handle | downcase
+      assign prod_title = product.title | downcase
+      if prod_handle contains 'doomsday' or prod_title contains 'doomsday' or prod_handle contains 'doom' or prod_title contains 'doom'
         assign is_doomsday = true
-        break
-      elsif tag_lower contains 'doom'
-        assign is_doomsday = true
-        break
       endif
-    endfor
-    assign prod_handle = product.handle | downcase
-    assign prod_title = product.title | downcase
-    if prod_handle contains 'doomsday'
-      assign is_doomsday = true
-    elsif prod_title contains 'doomsday'
-      assign is_doomsday = true
-    elsif prod_handle contains 'doom'
-      assign is_doomsday = true
-    elsif prod_title contains 'doom'
-      assign is_doomsday = true
     endif
   endif
 -%}
 
+{%- if is_fifa -%}
+  {% render 'fifa-reviews', product: product %}
+{%- else -%}
 <div class="hs-blood-gallery-wrapper section-{{ section.id }}-padding">
   <div class="hs-blood-header">
     <div class="hs-blood-tag-wrap">
@@ -335,6 +365,7 @@
     </div>
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {

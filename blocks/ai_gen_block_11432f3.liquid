@@ -1,0 +1,212 @@
+{% doc %}
+  @prompt
+    Create a mobile-first hero slideshow section for a streetwear store called Highstare.
+    
+    CORE REQUIREMENT
+    - The section height must always equal the height of the image. No empty space above, below or beside the image on mobile or desktop.
+    - Images render in normal document flow (no position:absolute, no fixed height, no padding-bottom ratio hacks, no vh/svh min-height).
+    - Use width:100%; height:auto; display:block on images.
+    
+    STRUCTURE
+    - Blocks of type "slide", max 6.
+    - Each slide has: desktop image, mobile image (falls back to desktop image if empty), optional link URL (whole slide clickable), alt text.
+    - Use <picture> with a media query at 750px to swap mobile and desktop images.
+    - Add width and height attributes on each img using the image's real dimensions to prevent layout shift.
+    
+    SLIDER BEHAVIOUR
+    - Pure CSS scroll-snap horizontal slider with JS only for dots and autoplay. No external libraries.
+    - Slides sit in a flex row, each flex: 0 0 100%.
+    - align-items: flex-start so the container height follows the visible slide, not the tallest one. On slide change, animate the container height smoothly to the active slide's height.
+    - Swipe on touch, arrows on desktop only, dots on both.
+    - Settings: autoplay on/off, autoplay speed (3 to 10s), show dots, show arrows.
+    
+    PERFORMANCE
+    - First slide: loading="eager" and fetchpriority="high". All other slides: loading="lazy".
+    - Use Shopify image_url with widths 750, 1100, 1500, 2000 in srcset, and a correct sizes attribute (100vw).
+    
+    SETTINGS
+    - Section padding top and bottom (0 to 60px, default 0).
+    - Full width or page width toggle.
+    - Background color (default transparent).
+    - Optional rounded corners.
+    
+    OUTPUT
+    - Valid Liquid with a complete {% schema %}, scoped CSS using the section id, and a preset named "Highstare Hero Slider".
+    - Clean, commented code. No placeholder text visible on the storefront.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .highstare-slider-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding-block: {{ block.settings.padding_top }}px {{ block.settings.padding_bottom }}px;
+    background: {{ block.settings.background_color }};
+  }
+  .highstare-slider-{{ ai_gen_id }}__outer {
+    width: 100%;
+    max-width: {% if block.settings.width_mode == 'page' %}1400px{% else %}none{% endif %};
+    margin-inline: auto;
+  }
+  .highstare-slider-{{ ai_gen_id }}__viewport {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    border-radius: {{ block.settings.corner_radius }}px;
+    transition: height 350ms ease;
+  }
+  .highstare-slider-{{ ai_gen_id }}__viewport::-webkit-scrollbar { display: none; }
+  .highstare-slider-{{ ai_gen_id }}__track {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .highstare-slider-{{ ai_gen_id }}__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+  .highstare-slider-{{ ai_gen_id }}__slide a { display: block; }
+  .highstare-slider-{{ ai_gen_id }}__slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .highstare-slider-{{ ai_gen_id }}__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding-top: 12px;
+  }
+  .highstare-slider-{{ ai_gen_id }}__dots { display: flex; align-items: center; gap: 8px; }
+  .highstare-slider-{{ ai_gen_id }}__dot,
+  .highstare-slider-{{ ai_gen_id }}__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #121212;
+    background: #fff;
+    color: #121212;
+    cursor: pointer;
+  }
+  .highstare-slider-{{ ai_gen_id }}__dot { width: 10px; height: 10px; padding: 0; border-radius: 50%; }
+  .highstare-slider-{{ ai_gen_id }}__dot[aria-current='true'] { background: #121212; }
+  .highstare-slider-{{ ai_gen_id }}__arrow { width: 36px; height: 36px; border-radius: 50%; font-size: 20px; line-height: 1; }
+  .highstare-slider-{{ ai_gen_id }}__dot:focus-visible,
+  .highstare-slider-{{ ai_gen_id }}__arrow:focus-visible { outline: 3px solid #334fb4; outline-offset: 3px; }
+  @media (max-width: 749px) {
+    .highstare-slider-{{ ai_gen_id }}__arrows { display: none; }
+  }
+{% endstyle %}
+
+<highstare-slider-{{ ai_gen_id }} class="highstare-slider-{{ ai_gen_id }}" data-autoplay="{{ block.settings.autoplay }}" data-speed="{{ block.settings.autoplay_speed }}" {{ block.shopify_attributes }}>
+  <div class="highstare-slider-{{ ai_gen_id }}__outer">
+    <div class="highstare-slider-{{ ai_gen_id }}__viewport" data-viewport tabindex="0" aria-label="Highstare featured images">
+      <div class="highstare-slider-{{ ai_gen_id }}__track">
+        {% assign slide_count = 0 %}
+        {% for i in (1..6) %}
+          {% assign desktop_key = 'desktop_image_' | append: i %}
+          {% assign mobile_key = 'mobile_image_' | append: i %}
+          {% assign link_key = 'slide_link_' | append: i %}
+          {% assign alt_key = 'alt_text_' | append: i %}
+          {% assign desktop_image = block.settings[desktop_key] %}
+          {% assign mobile_image = block.settings[mobile_key] %}
+          {% assign slide_link = block.settings[link_key] %}
+          {% assign alt_text = block.settings[alt_key] %}
+          {% if desktop_image != blank %}
+            {% assign slide_count = slide_count | plus: 1 %}
+            <div class="highstare-slider-{{ ai_gen_id }}__slide" data-slide>
+              {% if slide_link != blank %}<a href="{{ slide_link }}" aria-label="{{ alt_text | default: desktop_image.alt | escape }}">{% endif %}
+              <picture>
+                {% if mobile_image != blank %}<source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1100 }} 1100w, {{ mobile_image | image_url: width: 1500 }} 1500w, {{ mobile_image | image_url: width: 2000 }} 2000w">{% endif %}
+                <img src="{{ desktop_image | image_url: width: 1500 }}" srcset="{{ desktop_image | image_url: width: 750 }} 750w, {{ desktop_image | image_url: width: 1100 }} 1100w, {{ desktop_image | image_url: width: 1500 }} 1500w, {{ desktop_image | image_url: width: 2000 }} 2000w" sizes="100vw" alt="{{ alt_text | default: desktop_image.alt | escape }}" width="{{ desktop_image.width }}" height="{{ desktop_image.height }}" {% if slide_count == 1 %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+              </picture>
+              {% if slide_link != blank %}</a>{% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% if slide_count > 1 and block.settings.show_controls %}
+      <div class="highstare-slider-{{ ai_gen_id }}__controls">
+        {% if block.settings.show_arrows %}<div class="highstare-slider-{{ ai_gen_id }}__arrows"><button class="highstare-slider-{{ ai_gen_id }}__arrow" type="button" data-prev aria-label="Previous slide">‹</button></div>{% endif %}
+        {% if block.settings.show_dots %}<div class="highstare-slider-{{ ai_gen_id }}__dots" role="group" aria-label="Choose a slide">{% for i in (1..6) %}{% assign desktop_key = 'desktop_image_' | append: i %}{% if block.settings[desktop_key] != blank %}<button class="highstare-slider-{{ ai_gen_id }}__dot" type="button" data-dot aria-label="Go to slide {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"></button>{% endif %}{% endfor %}</div>{% endif %}
+        {% if block.settings.show_arrows %}<div class="highstare-slider-{{ ai_gen_id }}__arrows"><button class="highstare-slider-{{ ai_gen_id }}__arrow" type="button" data-next aria-label="Next slide">›</button></div>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</highstare-slider-{{ ai_gen_id }}>
+
+<script>
+  (() => {
+    const tag = 'highstare-slider-{{ ai_gen_id }}';
+    if (customElements.get(tag)) return;
+    customElements.define(tag, class extends HTMLElement {
+      connectedCallback() {
+        this.viewport = this.querySelector('[data-viewport]');
+        this.slides = [...this.querySelectorAll('[data-slide]')];
+        this.dots = [...this.querySelectorAll('[data-dot]')];
+        if (!this.viewport || !this.slides.length) return;
+        this.onScroll = () => this.updateActive();
+        this.viewport.addEventListener('scroll', this.onScroll, { passive: true });
+        this.querySelector('[data-prev]')?.addEventListener('click', () => this.go(this.active - 1));
+        this.querySelector('[data-next]')?.addEventListener('click', () => this.go(this.active + 1));
+        this.dots.forEach((dot, index) => dot.addEventListener('click', () => this.go(index)));
+        this.active = 0;
+        this.setHeight();
+        this.resizeObserver = new ResizeObserver(() => this.setHeight());
+        this.resizeObserver.observe(this.slides[0]);
+        if (this.dataset.autoplay === 'true' && this.slides.length > 1) {
+          this.timer = window.setInterval(() => this.go((this.active + 1) % this.slides.length), Number(this.dataset.speed) * 1000);
+          this.addEventListener('pointerenter', () => window.clearInterval(this.timer));
+          this.addEventListener('pointerleave', () => this.restart());
+        }
+      }
+      updateActive() {
+        const index = Math.round(this.viewport.scrollLeft / this.viewport.clientWidth);
+        if (index === this.active) return;
+        this.active = Math.max(0, Math.min(index, this.slides.length - 1));
+        this.dots.forEach((dot, i) => dot.setAttribute('aria-current', i === this.active ? 'true' : 'false'));
+        this.setHeight();
+      }
+      setHeight() { if (this.slides[this.active]) this.viewport.style.height = `${this.slides[this.active].getBoundingClientRect().height}px`; }
+      go(index) {
+        this.active = (index + this.slides.length) % this.slides.length;
+        this.viewport.scrollTo({ left: this.slides[this.active].offsetLeft, behavior: 'smooth' });
+        this.dots.forEach((dot, i) => dot.setAttribute('aria-current', i === this.active ? 'true' : 'false'));
+        this.setHeight();
+        this.restart();
+      }
+      restart() {
+        if (this.dataset.autoplay === 'true' && this.slides.length > 1) {
+          window.clearInterval(this.timer);
+          this.timer = window.setInterval(() => this.go((this.active + 1) % this.slides.length), Number(this.dataset.speed) * 1000);
+        }
+      }
+      disconnectedCallback() { window.clearInterval(this.timer); this.resizeObserver?.disconnect(); }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Highstare hero slider",
+  "settings": [
+    {"type":"header","content":"Slides"},
+    {"type":"image_picker","id":"desktop_image_1","label":"Slide 1 desktop image"},{"type":"image_picker","id":"mobile_image_1","label":"Slide 1 mobile image"},{"type":"url","id":"slide_link_1","label":"Slide 1 link"},{"type":"text","id":"alt_text_1","label":"Slide 1 alt text"},
+    {"type":"image_picker","id":"desktop_image_2","label":"Slide 2 desktop image"},{"type":"image_picker","id":"mobile_image_2","label":"Slide 2 mobile image"},{"type":"url","id":"slide_link_2","label":"Slide 2 link"},{"type":"text","id":"alt_text_2","label":"Slide 2 alt text"},
+    {"type":"image_picker","id":"desktop_image_3","label":"Slide 3 desktop image"},{"type":"image_picker","id":"mobile_image_3","label":"Slide 3 mobile image"},{"type":"url","id":"slide_link_3","label":"Slide 3 link"},{"type":"text","id":"alt_text_3","label":"Slide 3 alt text"},
+    {"type":"image_picker","id":"desktop_image_4","label":"Slide 4 desktop image"},{"type":"image_picker","id":"mobile_image_4","label":"Slide 4 mobile image"},{"type":"url","id":"slide_link_4","label":"Slide 4 link"},{"type":"text","id":"alt_text_4","label":"Slide 4 alt text"},
+    {"type":"image_picker","id":"desktop_image_5","label":"Slide 5 desktop image"},{"type":"image_picker","id":"mobile_image_5","label":"Slide 5 mobile image"},{"type":"url","id":"slide_link_5","label":"Slide 5 link"},{"type":"text","id":"alt_text_5","label":"Slide 5 alt text"},
+    {"type":"image_picker","id":"desktop_image_6","label":"Slide 6 desktop image"},{"type":"image_picker","id":"mobile_image_6","label":"Slide 6 mobile image"},{"type":"url","id":"slide_link_6","label":"Slide 6 link"},{"type":"text","id":"alt_text_6","label":"Slide 6 alt text"},
+    {"type":"header","content":"Slider controls"},{"type":"checkbox","id":"autoplay","label":"Autoplay","default":false},{"type":"range","id":"autoplay_speed","label":"Autoplay speed","min":3,"max":10,"step":1,"unit":"s","default":5},{"type":"checkbox","id":"show_dots","label":"Show dots","default":true},{"type":"checkbox","id":"show_arrows","label":"Show arrows","default":true},{"type":"checkbox","id":"show_controls","label":"Show controls","default":true},
+    {"type":"header","content":"Layout"},{"type":"range","id":"padding_top","label":"Top padding","min":0,"max":60,"step":5,"unit":"px","default":0},{"type":"range","id":"padding_bottom","label":"Bottom padding","min":0,"max":60,"step":5,"unit":"px","default":0},{"type":"select","id":"width_mode","label":"Content width","options":[{"value":"full","label":"Full width"},{"value":"page","label":"Page width"}],"default":"full"},{"type":"color","id":"background_color","label":"Background","default":"#FFFFFF"},{"type":"range","id":"corner_radius","label":"Rounded corners","min":0,"max":40,"step":2,"unit":"px","default":0}
+  ],
+  "presets": [{"name":"Highstare hero slider"}],
+  "tag": null,
+  "class": "highstare-hero-slider"
+}
+{% endschema %}

@@ -1621,9 +1621,13 @@ a.product__text {
   font-weight: 800 !important;
 }
 
-/* CRO Optimization: Tighten gap between Price and Review Rating */
-.product__info-container > .custom-price-block {
-  margin-bottom: 2px !important;
+/* Light grey divider separating price and size section */
+.product__info-container > .custom-price-block,
+.product__info-container > .price {
+  width: 100% !important;
+  padding-bottom: 14px !important;
+  margin-bottom: 14px !important;
+  border-bottom: 1px solid #e5e5e5 !important;
 }
 
 .product__info-container > .trust-review-badge {
@@ -1644,11 +1648,15 @@ a.product__text {
   margin-bottom: 0.6rem !important;
 }
 
-.custom-price-block .current-price {
-  font-size: 2.2rem !important;
-  font-weight: 800 !important;
-  color: #111 !important;
-  letter-spacing: -0.01em !important;
+.custom-price-block .current-price,
+.product__info-container .price,
+.product__info-container .price-item,
+.product__info-container .price-item--regular,
+.product__info-container .price-item--sale {
+  font-size: 1.75rem !important;
+  font-weight: 400 !important;
+  color: #666 !important;
+  letter-spacing: 0.02em !important;
 }
 
 .product-form__input .form__label,
@@ -1677,5 +1685,169 @@ a.product__text {
   font-size: 1.8rem !important;
   font-weight: 600 !important;
 }
+
+/* ==========================================================================
+   HIGHSTARE PRODUCT PAGE COMPACT LAYOUT:
+   - Size Guide horizontally aligned with Size label
+   - Quantity selector horizontally aligned with Add to Cart
+   - Reduced empty spaces
+   ========================================================================== */
+
+/* Tighten general product info block spacing */
+.product__info-container > * {
+  margin-top: 1.2rem !important;
+  margin-bottom: 0 !important;
+}
+
+.product__info-container > *:first-child {
+  margin-top: 0 !important;
+}
+
+.product-form__input {
+  margin-bottom: 1.2rem !important;
+}
+
+/* Size label row with Size Guide button */
+.form__label--inline-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-bottom: 0.8rem !important;
+  padding: 0 !important;
+}
+
+.size-chart-link-btn {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+  font-size: 1.25rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
+  color: #666 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+  text-decoration-thickness: 1px !important;
+  transition: color 0.15s ease !important;
+  line-height: 1.2 !important;
+  text-transform: none !important;
+}
+
+.size-chart-link-btn:hover {
+  background: transparent !important;
+  color: #111 !important;
+  text-decoration: underline !important;
+}
+
+/* Quantity + Add to Cart Inline Row */
+.product-form__inline-actions {
+  display: flex !important;
+  align-items: stretch !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 1.2rem !important;
+}
+
+.product-form__inline-actions .product-form__quantity--inline {
+  flex: 0 0 115px !important;
+  max-width: 125px !important;
+  min-width: 105px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.product-form__inline-actions .quantity--inline {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 48px !important;
+  border: 1.5px solid #111 !important;
+  border-radius: 4px !important;
+  background: #fff !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+.product-form__inline-actions .quantity--inline:before,
+.product-form__inline-actions .quantity--inline:after {
+  display: none !important;
+}
+
+.product-form__inline-actions .quantity__button {
+  width: 34px !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #111 !important;
+  cursor: pointer !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 1.8rem !important;
+  padding: 0 !important;
+  transition: background 0.15s ease !important;
+}
+
+.product-form__inline-actions .quantity__button:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.product-form__inline-actions .quantity__input {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+  text-align: center !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  height: 100% !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.product-form__inline-actions .product-form__submit {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-height: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  border-radius: 4px !important;
+  background: #111 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  font-size: 1.35rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+.product-form__inline-actions .product-form__submit:hover {
+  background: #000 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Hide any legacy standalone quantity selector to avoid duplicate */
+.product__info-container > .product-form__quantity:not(.product-form__quantity--inline) {
+  display: none !important;
+}
+
+/* Hide any legacy size-chart-wrap outside fieldset to avoid duplicate */
+.product__info-container > .size-chart-wrap,
+.product__info-container > div > .size-chart-wrap {
+  display: none !important;
+}
+
 
 

@@ -34,13 +34,21 @@
           endif
         endif
       -%}
+      {%- assign option_name_lower = option.name | downcase -%}
       {%- if picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
-          <legend class="form__label">
-            {{ option.name }}:
-            <span data-selected-value>
-              {{- option.selected_value -}}
+          <legend class="form__label form__label--inline-header">
+            <span>
+              {{ option.name }}:
+              <span data-selected-value>
+                {{- option.selected_value -}}
+              </span>
             </span>
+            {%- if option_name_lower contains 'size' -%}
+              <button type="button" class="size-chart-link-btn" onclick="openSizeChart()">
+                Size Chart
+              </button>
+            {%- endif -%}
           </legend>
           {% render 'product-variant-options',
             product: product,
@@ -51,7 +59,14 @@
         </fieldset>
       {%- elsif picker_type == 'button' -%}
         <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
+          <legend class="form__label form__label--inline-header">
+            <span>{{ option.name }}</span>
+            {%- if option_name_lower contains 'size' -%}
+              <button type="button" class="size-chart-link-btn" onclick="openSizeChart()">
+                Size Chart
+              </button>
+            {%- endif -%}
+          </legend>
           {% render 'product-variant-options',
             product: product,
             option: option,
@@ -61,9 +76,16 @@
         </fieldset>
       {%- else -%}
         <div class="product-form__input product-form__input--dropdown">
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-            {{ option.name }}
-          </label>
+          <div class="form__label--inline-header">
+            <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+              {{ option.name }}
+            </label>
+            {%- if option_name_lower contains 'size' -%}
+              <button type="button" class="size-chart-link-btn" onclick="openSizeChart()">
+                Size Chart
+              </button>
+            {%- endif -%}
+          </div>
           <div class="select">
             {%- if picker_type == 'swatch_dropdown' -%}
               <span
@@ -98,4 +120,6 @@
       {{ product.selected_or_first_available_variant | json }}
     </script>
   </variant-selects>
+
+  {% render 'size-chart-modal' %}
 {%- endunless -%}

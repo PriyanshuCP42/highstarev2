@@ -1,0 +1,194 @@
+<!-- Size Chart Modal -->
+<div class="size-modal-overlay" id="sizeChartModal" onclick="closeSizeChart()">
+  <div class="size-modal-box" onclick="event.stopPropagation()">
+    <button class="size-modal-close" onclick="closeSizeChart()" aria-label="Close Size Chart">✕</button>
+    <h3 class="size-modal-title">Size Chart</h3>
+    <p class="size-modal-note">All measurements are in <strong>inches</strong></p>
+
+    <div class="size-table-wrap">
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Chest</th>
+            <th>Length</th>
+            <th>Shoulder</th>
+            <th>Sleeve</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>XS</td><td>36</td><td>26</td><td>16</td><td>8</td></tr>
+          <tr><td>S</td><td>38</td><td>27</td><td>17</td><td>8.5</td></tr>
+          <tr><td>M</td><td>40</td><td>28</td><td>18</td><td>9</td></tr>
+          <tr><td>L</td><td>42</td><td>29</td><td>19</td><td>9.5</td></tr>
+          <tr><td>XL</td><td>44</td><td>30</td><td>20</td><td>10</td></tr>
+          <tr><td>XXL</td><td>46</td><td>31</td><td>21</td><td>10.5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="size-how-to">
+      <h4>How to Measure</h4>
+      <ul>
+        <li><strong>Chest:</strong> Measure around the fullest part of your chest</li>
+        <li><strong>Length:</strong> Measure from shoulder top to hem</li>
+        <li><strong>Shoulder:</strong> Measure from shoulder seam to seam</li>
+        <li><strong>Sleeve:</strong> Measure from shoulder seam to cuff</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .size-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(2px);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .size-modal-overlay.active {
+    display: flex;
+  }
+
+  .size-modal-box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  .size-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #333;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.15s ease;
+  }
+  .size-modal-close:hover {
+    background: #f0f0f0;
+  }
+
+  .size-modal-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0 0 4px;
+    color: #111;
+  }
+
+  .size-modal-note {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 0 0 16px;
+  }
+
+  .size-table-wrap {
+    overflow-x: auto;
+  }
+
+  .size-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .size-table th {
+    background: #111;
+    color: #fff;
+    padding: 10px 12px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .size-table td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  .size-table tbody tr:nth-child(even) {
+    background: #fafafa;
+  }
+
+  .size-table tbody tr:hover {
+    background: #f0f0f0;
+  }
+
+  .size-how-to {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+  }
+
+  .size-how-to h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #111;
+  }
+
+  .size-how-to ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .size-how-to ul li {
+    font-size: 0.85rem;
+    color: #555;
+    padding: 6px 0;
+    border-bottom: 1px dashed #eee;
+  }
+</style>
+
+<script>
+  function openSizeChart() {
+    const modal = document.getElementById('sizeChartModal');
+    if (modal) {
+      if (modal.parentNode !== document.body) {
+        document.body.appendChild(modal);
+      }
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeSizeChart() {
+    const modal = document.getElementById('sizeChartModal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeSizeChart();
+    }
+  });
+</script>
