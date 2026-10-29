@@ -203,6 +203,7 @@
 {%- liquid
   assign is_doomsday = false
   assign is_fifa = false
+  assign is_anime = false
 
   # 1. Check active collection context
   if collection and collection.handle != 'all' and collection.handle != 'frontpage'
@@ -212,6 +213,8 @@
       assign is_doomsday = true
     elsif col_h contains 'fifa' or col_t contains 'fifa'
       assign is_fifa = true
+    elsif col_h contains 'anime' or col_t contains 'anime'
+      assign is_anime = true
     endif
   endif
 
@@ -277,11 +280,43 @@
         assign is_doomsday = true
       endif
     endif
+
+    # 6. Check Anime
+    if is_anime == false and is_fifa == false and is_doomsday == false
+      for col in product.collections
+        assign c_h = col.handle | downcase
+        assign c_t = col.title | downcase
+        if c_h contains 'anime' or c_t contains 'anime'
+          assign is_anime = true
+          break
+        endif
+      endfor
+    endif
+
+    if is_anime == false and is_fifa == false and is_doomsday == false
+      for tag in product.tags
+        assign tag_l = tag | downcase
+        if tag_l contains 'anime'
+          assign is_anime = true
+          break
+        endif
+      endfor
+    endif
+
+    if is_anime == false and is_fifa == false and is_doomsday == false
+      assign prod_h = product.handle | downcase
+      assign prod_t = product.title | downcase
+      if prod_h contains 'anime' or prod_t contains 'anime' or prod_h contains 'itachi' or prod_t contains 'itachi' or prod_h contains 'eren' or prod_t contains 'eren' or prod_h contains 'naruto' or prod_t contains 'naruto' or prod_h contains 'gojo' or prod_t contains 'gojo' or prod_h contains 'sukuna' or prod_t contains 'sukuna' or prod_h contains 'goku' or prod_t contains 'goku' or prod_h contains 'dragon-ball' or prod_t contains 'dragon ball' or prod_h contains 'jujutsu' or prod_t contains 'jujutsu' or prod_h contains 'death-note' or prod_t contains 'death note' or prod_h contains 'titan' or prod_t contains 'titan' or prod_h contains 'zoro' or prod_t contains 'zoro' or prod_h contains 'luffy' or prod_t contains 'luffy' or prod_h contains 'one-piece' or prod_t contains 'one piece'
+        assign is_anime = true
+      endif
+    endif
   endif
 -%}
 
 {%- if is_fifa -%}
   {% render 'fifa-reviews', product: product %}
+{%- elsif is_anime -%}
+  {%- comment -%} Hidden exclusively on Anime collection product page {%- endcomment -%}
 {%- else -%}
 <div class="hs-blood-gallery-wrapper section-{{ section.id }}-padding">
   <div class="hs-blood-header">

@@ -145,6 +145,13 @@
         "padding_bottom": 0
       }
     },
+    "insta-spotlight": {
+      "type": "insta-spotlight",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 24
+      }
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -172,6 +179,7 @@
   },
   "order": [
     "main",
+    "insta-spotlight",
     "related-products",
     "178496208852e2b505"
   ]
