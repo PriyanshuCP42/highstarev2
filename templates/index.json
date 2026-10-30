@@ -15,7 +15,7 @@
         "hero_slide_1": {
           "type": "slide",
           "settings": {
-            "image_asset": "Doomsday Streetwear in a Rainy Warehouse.png",
+            "image_asset": "hero-doomsday.webp",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -32,7 +32,7 @@
         "hero_slide_2": {
           "type": "slide",
           "settings": {
-            "image_asset": "HERO.png",
+            "image_asset": "hero-main.webp",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -129,8 +129,8 @@
     "image_banner_lookbook": {
       "type": "image-banner",
       "settings": {
-        "custom_image_asset": "lookbooks1.png",
-        "custom_mobile_image_asset": "Lookbook3 .png",
+        "custom_image_asset": "lookbook-desktop.webp",
+        "custom_mobile_image_asset": "lookbook-mobile.webp",
         "page_width": true,
         "image_height": "adapt",
         "padding_top": 64,
@@ -220,7 +220,7 @@
       ],
       "settings": {
         "product": "guts-tee",
-        "custom_image_asset": "Grill.png",
+        "custom_image_asset": "featured-grill.webp",
         "color_scheme": "scheme-4",
         "secondary_background": false,
         "media_size": "large",
@@ -240,7 +240,7 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "image_asset": "Lookbook .png",
+            "image_asset": "lookbook-alt.webp",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -258,7 +258,7 @@
         "slide_2": {
           "type": "slide",
           "settings": {
-            "image_asset": "Lookbook1.png",
+            "image_asset": "lookbook-1.webp",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
