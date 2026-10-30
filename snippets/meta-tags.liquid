@@ -19,7 +19,11 @@
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
 
-{%- assign og_image = page_image | default: settings.share_image -%}
+{%- assign og_image = page_image -%}
+{%- if og_image == blank and request.page_type == 'collection' -%}
+  {%- assign og_image = collection.image | default: collection.products.first.featured_image -%}
+{%- endif -%}
+{%- assign og_image = og_image | default: settings.share_image -%}
 {%- if og_image -%}
   <meta property="og:image" content="https:{{ og_image | image_url: width: 1200 }}">
   <meta property="og:image:secure_url" content="https:{{ og_image | image_url: width: 1200 }}">
