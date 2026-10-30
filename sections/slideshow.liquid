@@ -186,10 +186,10 @@
               <picture style="display: block; width: 100%; position: relative !important; height: auto !important;">
                 <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image_asset | asset_url }}">
                 <source media="(min-width: 750px)" srcset="{{ block.settings.image_asset | asset_url }}">
-                <img src="{{ block.settings.image_asset | asset_url }}" width="100%" height="100%" style="width: 100%; height: auto !important; position: relative !important; object-fit: contain;" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}">
+                <img src="{{ block.settings.image_asset | asset_url }}" alt="{{ shop.name | escape }} streetwear collection {{ forloop.index }}" width="100%" height="100%" style="width: 100%; height: auto !important; position: relative !important; object-fit: contain;" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}">
               </picture>
             {%- else -%}
-              <img src="{{ block.settings.image_asset | asset_url }}" width="100%" height="100%" style="width: 100%; height: auto !important; position: relative !important; object-fit: contain;" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}">
+              <img src="{{ block.settings.image_asset | asset_url }}" alt="{{ shop.name | escape }} streetwear collection {{ forloop.index }}" width="100%" height="100%" style="width: 100%; height: auto !important; position: relative !important; object-fit: contain;" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}">
             {%- endif -%}
           {%- elsif block.settings.image -%}
             {%- liquid

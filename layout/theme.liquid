@@ -306,11 +306,18 @@
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
-      {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
-      {{ 'component-cart.css' | asset_url | stylesheet_tag }}
-      {{ 'component-totals.css' | asset_url | stylesheet_tag }}
-      {{ 'component-price.css' | asset_url | stylesheet_tag }}
-      {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+      {%- comment -%} Cart drawer styles are only needed once the drawer opens, so load them without blocking first paint. {%- endcomment -%}
+      {%- assign cart_css_files = 'component-cart-drawer.css,component-cart.css,component-totals.css,component-price.css,component-discounts.css' | split: ',' -%}
+      {%- for css in cart_css_files -%}
+        <link rel="stylesheet" href="{{ css | asset_url }}" media="print" onload="this.media='all'">
+      {%- endfor -%}
+      <noscript>
+        {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+        {{ 'component-cart.css' | asset_url | stylesheet_tag }}
+        {{ 'component-totals.css' | asset_url | stylesheet_tag }}
+        {{ 'component-price.css' | asset_url | stylesheet_tag }}
+        {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+      </noscript>
     {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}
