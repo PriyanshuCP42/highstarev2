@@ -26,6 +26,8 @@
     <title>
       {%- if request.page_type == 'index' -%}
         HIGHSTARE | Modern Clothing & Streetwear
+      {%- elsif request.page_type == 'collection' and collection.handle != 'all' and page_title == collection.title -%}
+        {{ collection.title | downcase | capitalize }} Oversized Streetwear Tees &amp; Hoodies | HIGHSTARE
       {%- else -%}
         {{ page_title }}
         {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
@@ -36,6 +38,8 @@
 
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
+    {% elsif request.page_type == 'collection' %}
+      <meta name="description" content="Shop {{ collection.title | downcase | capitalize | escape }} oversized graphic tees and hoodies at HIGHSTARE. Heavyweight streetwear designed for India, with UPI and COD checkout.">
     {% elsif request.page_type == 'index' %}
       <meta name="description" content="HIGHSTARE — Shop modern streetwear, anime-inspired graphic tees, FIFA/26 styles and heavyweight essentials. Explore the latest collection.">
     {% endif %}

@@ -1310,6 +1310,11 @@
         "placeholder": "t:settings_schema.social-media.settings.social_facebook_link.info"
       },
       {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Default social sharing image (1200x630)"
+      },
+      {
         "type": "text",
         "id": "social_instagram_link",
         "label": "t:settings_schema.social-media.settings.social_instagram_link.label",
